@@ -1,0 +1,70 @@
+<!--gwc.wxml-->
+<import src="/utils/pageState/index.wxml" />
+<template is="pageState" data="{{...pageState}}" />
+<view class="container">
+	<view class="zanwu" wx:if="{{goods.length==0}}">暂无内容</view>
+  <view class="goods" wx:for="{{goods}}"
+		wx:for-index="idx"
+		wx:for-item="item" 
+		wx:key="idx"
+		data-tab="{{idx}}"
+		bindtap="">
+		<view class="goods1">
+			<view class="xuanze" data-selec="{{idx}}" bindtap="select">
+				<view class="xuanze1 {{goods_sele[idx].xuan==true? 'xuanze2':''}}">
+					<icon  wx:if="{{goods_sele[idx].xuan==true}}" type="success" color="#fe0042" />
+				</view>
+			</view>
+			<view class="goodsImg" data-gid="{{item.order_cart.goods_sku_id}}" bindtap="opengoodsxq">
+				<image src="{{spimg[0]}}"></image>
+			</view>
+			<view class="goodsinr">
+				<view class="goodsname" data-gid="{{item.order_cart.goods_sku_id}}" bindtap="opengoodsxq">{{item.order_cart.goods_sku_name}}</view>
+				<view class="goodspri" data-gid="{{item.order_cart.goods_sku_id}}" bindtap="opengoodsxq">
+					市场价<text class="scx">￥{{item.order_cart.market_price}}</text>
+				</view>
+				<view class="goodspri1">
+					<text  data-gid="{{item.order_cart.goods_sku_id}}" bindtap="opengoodsxq">￥{{item.order_cart.internal_price}}</text>
+					<view class="vstepper steppera">
+						<view catchtap="onNum" data-idx="{{idx}}" data-ad="-" data-id="{{item.order_cart.order_cart_id}}" class="vantjian">-</view>
+						<input class="vanipt" disabled value="{{ goods_sele[idx].num }}"></input>
+						<view catchtap="onNum" data-idx="{{idx}}" data-ad="+" data-id="{{item.order_cart.order_cart_id}}" class="vantjia">+</view>
+					</view>
+				</view>
+			</view>
+		</view>	
+		<!-- jieti -->
+		<view class="goods2" wx:if="{{item.order_cart.is_ladder_pricing}}">
+			<view class="goods2tit">本特惠限购期内您已订购本商品{{item.havenum}}件,本次拟购买商品{{item.order_cart.goods_count}}件。价格如下：</view>
+			<view class="table1">
+				<view class="tr1">
+					<view class="th1">数量区间</view>
+					<view class="th1">件数</view>
+					<view class="th1">单价</view>
+					<view class="th1">总价</view>
+				</view>
+				<view class="tr1" wx:for="{{goods_sele[idx].laddermsgs.laddermsg}}"wx:for-index="idx1"
+									wx:for-item="item1" 
+									wx:key="idx1">
+					<view class="td1">{{item1.numladd}}</view>
+					<view class="td1">{{item1.jtnum}}</view>
+					<view class="td1">{{item1.priladd}}</view>
+					<view class="td1">{{item1.jtTotal}}</view>
+				</view>
+			</view>
+		</view>
+		<!-- jieti -->
+	</view>
+	<view class="vbottom" wx:if="{{goods.length!==0}}">
+		<view class="selecAll" bindtap="selecAll">
+			<view class="xuanze1 all {{all==true? 'xuanze2':''}}">
+				<icon  wx:if="{{all==true}}" type="success" color="#fe0042" />
+			</view>
+			全选
+		</view>
+		<view class="heji">
+			合计:￥{{sum}}
+		</view>
+		<view class="jiesuan" bindtap="openOrder">去结算</view>
+	</view>
+</view>

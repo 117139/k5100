@@ -1,0 +1,17 @@
+.container{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	background-color: #fff;
+}
+.logo{
+	width: 205rpx;
+	height: 230rpx;
+	margin-top: 100rpx;
+}
+.abouttext{
+	font-size: 26rpx;
+	color: #333333;
+	text-align:justify; 
+	padding: 100rpx 28rpx 0;
+}

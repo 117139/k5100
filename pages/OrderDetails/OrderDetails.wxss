@@ -1,0 +1,174 @@
+.container{
+	background: #eeeeee;
+}
+.address{
+	display: flex;
+	width: 100%;
+	height: 153rpx;
+	padding: 0 28rpx;
+	box-sizing: border-box;
+	background-color: #fff;
+	align-items: center;
+}
+.add_l{
+	height: 80%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	flex: 1;
+	
+}
+.al_1{
+	font-size: 30rpx;
+	color: #333;
+}
+.l_tel{
+	margin-left: 47rpx;
+}
+.al_2{
+	width: 670rpx;
+	font-size: 24rpx;
+	color: #999;
+	text-overflow:ellipsis;
+	 white-space:nowrap; 
+	 overflow:hidden;
+}
+.add_r{
+	width: 23rpx;
+	height: 40rpx;
+}
+.orderbder{
+	width: 100%;
+	height: 6rpx;
+	display: flex;
+}
+.goodsBox{
+	width: 100%;
+}
+.goodsOne{
+	width: 100%;
+	padding: 0 28rpx;
+	box-sizing: border-box;
+	background-color: #fff;
+	margin-bottom: 17rpx;
+}
+.goodsdft{
+	padding: 38rpx 0 18rpx;
+	display: flex;
+	border-bottom: 1px solid #eeeeee;
+}
+.goodsImg{
+	width: 138rpx;
+	height: 138rpx;
+	border: 1px solid #d2d2d2;
+	margin-right: 40rpx;
+}
+.goodsInr{
+	width: 500rpx;
+	padding: 20rpx 0;
+	line-height: 50rpx;
+	height: 120rpx; 
+	box-sizing: border-box;
+	display:-webkit-box !important;  
+	overflow:hidden;
+	text-overflow:ellipsis;
+	word-break:break-all;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:2;
+	font-size: 28rpx;
+	color: #999;
+}
+.goods2{
+	width: 100%;
+	padding:20rpx 0 28rpx;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+}
+.goods2tit{
+	width: 100%;
+	line-height: 45rpx;
+	font-size: 26rpx;
+	color: #333;
+}
+.xiaoji{
+	text-align: right;
+	font-size: 28rpx;
+	color: #333;
+	padding: 30rpx 0;
+}
+.ml10{
+	margin-left: 10px;
+}
+.xjjine{
+	font-size: 32rpx;
+	color: #fe0042;
+}
+
+.ordermsg{
+	width: 100%;
+	background-color: #fff;
+	padding: 30rpx 28rpx 60rpx;
+	box-sizing: border-box;
+	
+}
+.msgtit{
+	width: 100%;
+	padding-left: 10rpx;
+	box-sizing: border-box;
+	height: 26rpx;
+	border-left: 8rpx solid #fe0042;
+	font-size: 28rpx;
+	color: #333;
+	display: flex;
+	align-items: center;
+	margin-bottom: 30rpx;
+}
+.msginr{
+	width: 100%;
+	display: flex;
+}
+.orderewm{
+	width: 210rpx;
+	height: 210rpx;
+	margin-right: 32rpx;
+}
+.ordermsg_r{
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.omsgp{
+	font-size: 26rpx;
+	color: #666;
+}
+.ordercaozuo{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 32rpx;
+	color: #fe0042;
+}
+.confirmBtn{
+	width: 180rpx;
+	height: 64rpx;
+	border-radius: 32rpx;
+	font-size: 24rpx;
+	color: #fe0042;
+	border:1px solid #fe0042;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.zhifu{
+	width: 100%;
+	height:100rpx;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	background-color:#fe0042;
+	color:#fff;
+	font-size:30rpx;
+}

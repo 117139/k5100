@@ -1,0 +1,43 @@
+<!--fenlei.wxml-->
+<import src="/utils/pageState/index.wxml" />
+<template is="pageState" data="{{...pageState}}" />
+<view class="container">
+  <scroll-view class="leftB" scroll-y style="height: {{wh}}px;">
+		<view wx:for="{{shopgroups}}" wx:for-index="idx"          
+          wx:for-item="item" 
+          wx:key="idx"
+			class="tabbar1 {{tabIndex==idx ? 'tabbar2':''}}"
+			data-tab="{{idx}}"
+			data-gid="{{item.goods_category_id}}"
+			bindtap="tapTab" wx:if="{{item.father_id==0}}">{{item.category_name}}</view>
+	</scroll-view>
+  <scroll-view class="rightB" scroll-y 
+		scroll-top="{{scrollTop}}" 
+		 style="height: {{wh}}px;"><!-- bindscroll="scroll" -->
+		<view class="mt1">
+		 	<view class="hx"></view>
+		 	<view class="title">{{shopgroups[tabIndex].category_name}}</view>
+		 	<view class="hx"></view>
+		</view>	
+		<view class="sp1">
+			<view class="spone" wx:for="{{shoplist}}" wx:for-index="idx"          
+				wx:for-item="item" 
+				wx:key="idx"
+				data-id="{{item.goods_sku_id}}"
+				bindtap="opengoods">
+				<view class="spimg">
+					<image src="{{spimg[idx]}}"></image>
+				</view>
+				<view class="spmsg">
+					<view class="spmsg1">{{item.goods_sku_name}}</view>
+					<view class="spmsg2">￥{{item.internal_price}}</view>
+				</view>
+			</view>
+		</view>
+		<view wx:if="{{more}}" class="more" bindtap="getshoplist">
+			查看更多>
+		</view>
+		<view class="loadb" wx:if="{{!more&&shoplist.length!=0}}">全部加载完毕</view>
+		<view class="loadb" wx:if="{{shoplist.length==0}}">暂无数据</view>
+	</scroll-view>
+</view>

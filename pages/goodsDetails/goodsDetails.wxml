@@ -1,0 +1,121 @@
+<!--logs.wxml-->
+<import src="../../vendor/wxParse/wxParse.wxml" />
+<import src="/utils/pageState/index.wxml" />
+<template is="pageState" data="{{...pageState}}" />
+<view class="container log-list">
+  <swiper class="swiper"
+  	indicator-dots="{{indicatorDots}}"
+  	autoplay="{{autoplay}}"
+  	interval="{{interval}}"
+  	duration="{{duration}}"
+  	indicator-active-color='#8e8e8e'
+  	circular=true
+  >
+  	<block wx:for="{{spimg}}" wx:for-index="idx"          
+        wx:for-item="item" 
+        wx:key="idx">
+  		<swiper-item>
+  			<image src="{{item}}"
+					class="slide-image"
+					width="355" height="150"
+					data-curitem="{{item}}"
+					bindtap="pveimg"/>
+  		</swiper-item>
+  	</block>
+  </swiper>
+	<view class="goodsmsg">
+		<view class="goodsname" wx:if="{{goodsd.goods_sku_name}}">
+			{{goodsd.goods_sku_name}}
+		</view>
+		<view class="goodsjg">
+			<view class="scj">市场价<text  class="scx" wx:if="{{goodsd.market_price!==''}}">￥{{goodsd.market_price}}</text></view><!-- 68.90 -->
+			<view class="ghngj">
+				国航内购价: <text wx:if="{{goodsd.internal_price!==''}}">￥{{goodsd.internal_price}}</text>
+			</view>
+		</view>
+		<view class="tabletit" wx:if="{{goodsd.is_ladder_pricing}}">
+			本商品同一特惠周期内计价方式如下：
+		</view>
+		<view class="table1" wx:if="{{goodsd.is_ladder_pricing}}">
+			<view class="tr1">
+				<view class="th1">购买数量(箱)</view>
+				<view class="th1">价格</view>
+				<view class="th1">总供货量</view>
+			</view>
+			<view class="tr1" wx:for="{{pricelist}}" wx:for-index="idx"
+								wx:for-item="item" 
+								wx:key="idx">
+				<view class="td1">{{item.lower_num}}-{{item.upper_num}}</view>
+				<view class="td1">{{item.price}}元</view>
+				<view class="td1">{{item.limit_num==0? '无':item.limit_num+'箱'}}</view>
+			</view>
+		</view>
+	</view>
+	<view class="guige" bindtap="sheetshow">
+		<view class="guige_l">
+			<view class="guige_l_name">规格</view>
+			 <view wx:if="{{guige[0]}}">{{cnum}}个，{{guige[0]}}</view>
+		</view>
+		<view class="guige_r">
+			<image src="/static/images/index/ggr_03.png"></image>
+		</view>
+	</view>
+	
+	<van-popup custom-class="popopBox" show="{{ sheetshow }}"
+	position="bottom" bind:close="onClose"
+	custom-style="height:760rpx">
+		<view class="popopBox1">
+			<view class="goodsimg">
+				<image src="{{spimg[0]}}"
+				data-imgurl="{{spimg[0]}}"
+					bindtap="pveimg"></image>
+			</view>
+			<view class="goodstkjg">
+				<view class="closebtn" bindtap="onClose">
+					<image src="/static/images/index/closebtn_03.jpg"></image>
+				</view>
+				<view class="tkpri">￥{{goodsd.internal_price}}</view>
+				<view class="tkname">{{goodsd.goods_sku_name}}</view>
+			</view>
+		</view>
+		<view class="tkguigetit">规格选择</view>
+		<view class="guigeBox">
+			<text class="guigeOne {{idx==type1?'cur':''}}" wx:for="{{guige}}"wx:for-index="idx"
+								wx:for-item="item" 
+								wx:key="idx"
+								data-gg="{{idx}}"
+								bindtap="selegg">{{item}}</text>
+		</view>
+		<view class="countnum">
+			<text>数量</text>
+			<van-stepper custom-class="steppera" 
+			input-class="vanipt"
+			plus-class="vantjia"
+			minus-class="vantjian"
+			value="{{ cnum }}" 
+			data-selec="{{idx}}" 
+			bind:input="onChange"
+			bind:change="onChange" />
+		</view>
+		<view class="czbtnG">
+			<view class="jrgwc" bindtap="addwgc">加入购物车</view>
+			<view class="buybtn" bindtap="nowbuy">立即购买</view>
+		</view>
+	</van-popup>
+
+	<view class="goodsmsgs">
+		<template is="wxParse" data="{{wxParseData:article.nodes}}" />
+		<!-- <image class="goodsdetailsimg" src="../../static/images/index/goodsdetails_06.jpg"></image> -->
+	</view>
+	<view class="bottomBox">
+		<view class="opengwc" bindtap="opengwc">
+			<view class="l_icon">
+				<image src="/static/images/index/gwcicon.png"></image>
+				<!-- <view class="goodsnum">1</view> -->
+			</view>
+			<view class="l_name">购物车</view>
+		</view>
+		<view class="jrgwc" bindtap="sheetshow">加入购物车</view>
+		<view class="buybtn" bindtap="sheetshow">立即购买</view>
+	</view>
+</view>

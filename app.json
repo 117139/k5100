@@ -1,0 +1,65 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/about/about",
+    "pages/login/login",
+    "pages/addAdd/addAdd",
+		"pages/addressEdit/addressEdit",
+    "pages/myaddress/myaddress",
+    "pages/OrderList/OrderList",
+    
+    "pages/OrderDetails/OrderDetails",
+    "pages/Order/Order",
+    "pages/goodsDetails/goodsDetails",
+    "pages/my/my",
+    "pages/car/car",
+    "pages/fcar/car",
+    "pages/fenlei/fenlei",
+    "pages/shouquan/shouquan",
+    "pages/logs/logs"
+		
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "5100西藏冰泉矿泉水",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#aaaaaa",
+    "selectedColor": "#0e5aaa",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/static/images/kindex_1.png",
+        "selectedIconPath": "/static/images/kindex1_1.png"
+      },
+      {
+        "pagePath": "pages/fenlei/fenlei",
+        "text": "分类",
+        "iconPath": "/static/images/kindex_2.png",
+        "selectedIconPath": "/static/images/kindex1_2.png"
+      },
+      {
+        "pagePath": "pages/car/car",
+        "text": "购物车",
+        "iconPath": "/static/images/kindex_3.png",
+        "selectedIconPath": "/static/images/kindex1_3.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "/static/images/kindex_4.png",
+        "selectedIconPath": "/static/images/kindex1_4.png"
+      }
+    ]
+  },
+	"usingComponents": {
+		"van-stepper": "vendor/vant/lib/stepper/index",
+		"van-submit-bar": "vendor/vant/lib/submit-bar/index",
+		"van-popup": "vendor/vant/lib/popup/index",
+		"van-action-sheet": "vendor/vant/lib/action-sheet/index"
+	},
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,158 @@
+<!--logs.wxml-->
+<import src="/utils/pageState/index.wxml" />
+<template is="pageState" data="{{...pageState}}" />
+<view class="container">
+  <!-- <view class="address" bindtap="goaddress">
+		<view class="add_l">
+			<view class="al_1">{{address.name}} <text class="l_tel">{{address.mobile}}</text></view>
+			
+			<view class="al_2">{{address.province}}{{address.city}}{{address.county}}{{address.address}}</view>
+		</view>
+		<view class="add_r">
+			<image src="/static/images/my/mygl_06.png"></image>
+		</view>
+	</view>
+	<view class="orderbder">
+		<image src="/static/images/index/orderborder.png"></image>
+	</view> -->
+	<view class="goodsBox" wx:if="{{goodsnum!==''}}">
+		<view class="goodsOne" wx:for="{{goodslist}}"
+			wx:for-index="idx"
+			wx:for-item="item" 
+			wx:key="idx">
+			<view class="goodsdft">
+				<view class="goodsImg">
+					<image src="{{spimg[idx]}}"></image>
+				</view>
+				<view class="goodsInr">
+					{{item.data.goods_sku_name}} {{goodsguige===''?'':goodsguige}} {{goodsnum===''?'':goodsnum}}件
+				</view>
+			</view>
+			<view class="goods2" wx:if="{{item.data.is_ladder_pricing==1}}">
+				<view class="goods2tit">本特惠限购期内您已订购本商品{{item.havenum}}件,本次拟购买商品{{goodsnum===''?'':goodsnum}}件。价格如下：</view>
+				<view class="table1">
+					<view class="tr1">
+						<view class="th1">数量区间</view>
+						<view class="th1">件数</view>
+						<view class="th1">单价</view>
+						<view class="th1">总价</view>
+					</view>
+					<view class="tr1" wx:for="{{goods_sele[idx].laddermsgs.laddermsg}}"
+										wx:for-index="idx1"
+										wx:for-item="item1" 
+										wx:key="idx1">
+						<view class="td1">{{item1.numladd}}</view>
+						<view class="td1">{{item1.jtnum}}</view>
+						<view class="td1">{{item1.priladd}}</view>
+						<view class="td1">{{item1.jtTotal}}</view>
+					</view>
+				</view>
+			</view>
+			<view class="xiaoji">
+				共{{goodsnum===''?'':goodsnum}}件商品 <text class="ml10">小计：</text><text class="xjjine">￥{{goods_sele[idx].Totalpri? goods_sele[idx].Totalpri:goods_sele[idx].laddermsgs.Totalpri}}</text>
+			</view>
+		</view>
+	</view>
+	
+	<!-- /* gwc*/ -->
+	<view class="goodsBox" wx:if="{{goodsnum===''}}">
+		<view class="goodsOne" wx:for="{{goodslist}}"
+			wx:for-index="idx"
+			wx:for-item="item" 
+			wx:key="idx" wx:if="{{goods_sele[idx].xuan}}">
+			<!-- {{goods_sele[idx].xuan}} -->
+			<view class="goodsdft">
+				<view class="goodsImg">
+					<image src="{{spimg[idx]}}"></image>
+				</view>
+				<view class="goodsInr">
+					{{item.order_cart.goods_sku_name}} {{item.order_cart.goods_unit}} {{item.order_cart.goods_count}}件
+				</view>
+			</view>
+			<view class="goods2" wx:if="{{item.order_cart.is_ladder_pricing==1}}">
+				<view class="goods2tit">本特惠限购期内您已订购本商品{{item.havenum}}件,本次拟购买商品{{item.order_cart.goods_count}}件。价格如下：</view>
+				<view class="table1">
+					<view class="tr1">
+						<view class="th1">数量区间</view>
+						<view class="th1">件数</view>
+						<view class="th1">单价</view>
+						<view class="th1">总价</view>
+					</view>
+					<view class="tr1" wx:for="{{goods_sele[idx].laddermsgs.laddermsg}}"
+										wx:for-index="idx1"
+										wx:for-item="item1" 
+										wx:key="idx1">
+						<view class="td1">{{item1.numladd}}</view>
+						<view class="td1">{{item1.jtnum}}</view>
+						<view class="td1">{{item1.priladd}}</view>
+						<view class="td1">{{item1.jtTotal}}</view>
+					</view>
+				</view>
+			</view>
+			<view class="xiaoji">
+				共{{item.order_cart.goods_count}}件商品 <text class="ml10">小计：</text><text class="xjjine">￥{{goods_sele[idx].Totalpri? goods_sele[idx].Totalpri:goods_sele[idx].laddermsgs.Totalpri}}</text>
+			</view>
+		</view>
+	</view>
+	<picker bindchange="bindPickerChange" value="{{show0}}" range="{{columns}}">
+		<view class="guige">
+			<view class="guige_l">
+				<view class="guige_l_name">配送方式</view>
+				 <view>{{columns[show0]}}</view>
+			</view>
+			<view class="guige_r">
+				<image src="/static/images/index/ggr_03.png"></image>
+			</view>
+			
+		</view>
+  </picker>
+	<picker wx:if="{{show0==0}}" 
+	bindchange="bchange1" 
+	value="{{show1}}" 
+	range="{{columns1}}"
+	range-key="{{'name'}}">
+		<view class="guige">
+			<view class="guige_l">
+				<view class="guige_l_name">选择仓库</view>
+				 <view>{{columns1[show1].name}}</view>
+			</view>
+			<view class="guige_r">
+				<image src="/static/images/index/ggr_03.png"></image>
+			</view>
+		</view>
+	</picker>
+	<picker wx:if="{{show0==0}}" 
+		bindchange="bchange2" 
+		value="{{show2}}" 
+		range="{{columns2[show1]}}"
+		range-key="{{'time'}}">
+		<view class="guige">
+			<view class="guige_l">
+				<view class="guige_l_name">自提时间</view>
+				 <view>{{columns2[show1][show2].time}}</view>
+			</view>
+			<view class="guige_r">
+				<image src="/static/images/index/ggr_03.png"></image>
+			</view>
+		</view>
+	</picker>
+	<view class="guige">
+		<view class="guige_l">
+			<view class="wxicon">
+				<icon type="success" size="20" color="#6bcc03" />
+			</view>
+			<view class="guige_l_name">
+				微信支付
+			</view>
+			 <view></view>
+		</view>
+		<view class="guige_r">
+			<!-- <image src="/static/images/index/ggr_03.png"></image> -->
+		</view>
+	</view>
+	<view class="fixbottom">
+		<view class="fb_l">￥{{sum}}</view>
+		<view class="subbtn" bindtap="subbtn">提交订单</view>
+	</view>
+	
+</view>

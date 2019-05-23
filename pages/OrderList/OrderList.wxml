@@ -1,0 +1,55 @@
+<!--logs.wxml-->
+<import src="/utils/pageState/index.wxml" />
+<template is="pageState" data="{{...pageState}}" />
+<view class="container">
+	<view class="zanwu" wx:if="{{goods.length==0}}">暂无内容</view>
+	<view class="goodsBox">
+		<view class="goodsOne" wx:for="{{goods}}"
+			wx:for-index="idx"
+			wx:for-item="item" 
+			wx:key="idx">
+			<view class="goodsdft" wx:for="{{item.order_product_list}}"
+			wx:for-index="idx1"
+			wx:for-item="item1" 
+			wx:key="idx1" 
+			data-id="{{item.order_info.order_info_id}}" bindtap="goOrderDetails">
+				<view class="goodsImg">
+					<image src="{{spimg[idx][idx1]}}"></image>
+				</view>
+				<view class="goodsInr">
+					<view class="sptype"> 
+					{{item1.is_ladder_pricing==0?'普通商品':'阶梯优惠商品'}}
+						<text class="orderstatus">
+						{{item.order_info.order_status==0? '未支付':
+						item.order_info.order_status==1? '已支付':
+						item.order_info.order_status==2? '已发货':
+						item.order_info.order_status==3? '已完成':''}}</text>
+					</view>
+					<!-- <view class="sptype" wx:if="{{item1.is_ladder_pricing==1}}">阶梯优惠商品 
+						<text class="orderstatus">{{item.order_info.order_process}}</text>
+					</view> -->
+					<view class="goodsInr1">
+						{{item1.goods_sku_name}}
+					</view>
+					<view class="goodsInr1">	 {{item1.goods_unit}} 
+						 <!-- {{item1.goods_count}}件 -->
+					</view>
+				</view>
+			</view>
+			<view class="caozuo">
+				<view class="xiaoji">
+					共{{shopNum[idx]}}件商品 <text class="ml10">实付款：</text><text class="xjjine">￥{{item.order_info.order_price}}</text>
+				</view>
+				<view class="ordercaozuo" wx:if="{{item.order_info.order_status==0}}">
+					<!-- <view class="confirmBtn cancelBtn" bindtap="cancelBtn">取消订单</view> -->
+					<view class="confirmBtn" data-oid="{{item.order_info.order_info_id}}" bindtap="pay">付款</view>
+				</view>
+				<view class="ordercaozuo" wx:if="{{item.order_info.order_status==2}}">
+					<view class="confirmBtn" bindtap="shouhuoBtn">确认收货</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	
+	
+</view>

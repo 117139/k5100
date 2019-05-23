@@ -1,0 +1,84 @@
+<!--logs.wxml-->
+<import src="/utils/pageState/index.wxml" />
+<template is="pageState" data="{{...pageState}}" />
+<view class="container">
+  <!-- <view class="address">
+		<view class="add_l">
+			<view class="al_1">MISTERAYQU <text class="l_tel"as>113****7031</text></view>
+			<view class="al_2">上海市徐汇区田林路487号宝石22号楼杉德大厦1楼</view>
+		</view>
+		<view class="add_r">
+			//<image src="/static/images/my/mygl_06.png"></image> 
+		</view>
+	</view>
+	<view class="orderbder">
+		<image src="/static/images/index/orderborder.png"></image>
+	</view> -->
+	<view class="goodsBox">
+		<view class="goodsOne" wx:for="{{goods.list}}"
+			wx:for-index="idx"
+			wx:for-item="item" 
+			wx:key="idx">
+			<view class="goodsdft" data-id="{{item.order_product.goods_sku_id}}" bindtap="opengoods">
+				<view class="goodsImg">
+					<image src="{{spimg[idx]}}"></image>
+				</view>
+				<view class="goodsInr">
+					{{item.order_product.goods_sku_name}} {{item.order_product.goods_unit}} {{item.order_product.goods_count}}件
+				</view>
+			</view>
+			<!-- <view class="goods2" wx:if="{{item.order_product.is_ladder_pricing==1}}">
+				<view class="goods2tit">本特惠限购期内您已订购本商品2件,本次拟购买商品13件。价格如下：</view>
+				<view class="table1">
+					<view class="tr1">
+						<view class="th1">数量区间</view>
+						<view class="th1">件数</view>
+						<view class="th1">单价</view>
+						<view class="th1">总价</view>
+					</view>
+					<view class="tr1" wx:for="{{goods_sele[idx].laddermsgs.laddermsg}}"
+										wx:for-index="idx"
+										wx:for-item="item" 
+										wx:key="idx">
+						<view class="td1">{{item.numladd}}</view>
+						<view class="td1">{{item.jtnum}}</view>
+						<view class="td1">{{item.priladd}}</view>
+						<view class="td1">{{item.jtTotal}}</view>
+					</view>
+				</view>
+			</view> -->
+			<view class="xiaoji">
+				共{{item.order_product.goods_count}}件商品 
+				<!-- <text class="ml10">小计：</text>
+				<text class="xjjine" wx:if="item.order_product.is_ladder_pricing==0">￥{{item.zj}}</text> -->
+			</view>
+		</view>
+	</view>
+	<!-- <view class="zhifu">
+		付款
+	</view> -->
+	<view class="ordermsg" wx:show="{{order_status!==''}}">
+		<view class="msgtit">
+			订单信息
+		</view>
+		<view class="msginr">
+			<view class="orderewm">
+				<!-- <image src="/static/images/my/ewm_03.jpg"></image> -->
+				<canvas class='canvas' style="width:{{qrcodeWidth}}px; height:{{qrcodeWidth}}px;" canvas-id='canvas' bindlongtap=''></canvas>
+			</view>
+			<view class="ordermsg_r">
+				<view class="omsgp">订单编号：{{goods.info.delivery_code}}</view>
+				<view class="omsgp">创建时间：2019-05-11  11:42:06</view>
+				<view class="omsgp" wx:if="{{order_status!==0}}">付款时间：2019-05-11  11:42:09</view>
+				<view class="ordercaozuo">
+					<text>￥{{sum}}</text>
+					<view wx:if="{{order_status===0}}" class="confirmBtn" bindtap="pay">付款</view>
+					<view wx:if="{{order_status===2}}" class="confirmBtn" bindtap="confirmBtn">确认收货</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	
+	
+	
+</view>

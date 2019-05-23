@@ -1,0 +1,38 @@
+<!--logs.wxml-->
+<view class="container">
+  <image src="../../static/images/index/klogobg.jpg"></image>
+	<form class="logintk" bindsubmit="formSubmit">
+		<view class="lgmsg">
+			<view class="login_l">公司</view>
+			<picker class="login_r" bindchange="bindGsChange"
+			  value="{{company}}" range="{{picklist1}}">
+				<view class="gs">
+					<view class="gsname">{{array[gsidx].shop_channel_name}}</view>
+						<view class="xjt"></view>
+				</view>
+			</picker>
+			<input hidden value="{{array[gsidx].shop_channel_id}}" name="company" type="text" disabled/>
+		</view>
+		<view class="lgmsg">
+			<view class="login_l">姓名</view>
+			<view class="login_r">
+				<input type="text" name="name"/>
+			</view>
+		</view>
+		<view class="lgmsg">
+			<view class="login_l">电话</view>
+			<view class="login_r">
+				<input type="number" name="tel" bindblur='oniptblur'/>
+			</view>
+		</view>
+		<view class="lgmsg">
+			<view class="login_l">验证码</view>
+			<view class="login_r">
+				<input type="text" name="code"/>
+				<view wx:if="{{setstate==0}}" class="getcode" bindtap="getcode">获取验证码</view>
+				<view wx:if="{{setstate==1}}" class="getcode">{{time}}s后重新获取</view>
+			</view>
+		</view>
+		<button class="definebtn" form-type="submit">提交</button>
+	</form>
+</view>

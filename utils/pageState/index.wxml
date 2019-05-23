@@ -1,0 +1,18 @@
+<!-- utils/pageState/index.wxml -->
+<template name="pageState">
+  <view class="page-state-container" wx:if="{{state != 'finish'}}">
+    <view class="page-state-empty page-state-center" wx:if="{{state == 'empty'}}">
+      <icon type="info" size="70" />
+      <view class="message pstatemessage">{{message}}</view>
+    </view>
+    <view class="page-state-loading page-state-center" wx:if="{{state == 'loading'}}">
+      <icon type="waiting" size="70" />
+      <view class="message pstatemessage">{{message}}</view>
+    </view>
+    <view class="page-state-error page-state-center" wx:if="{{state == 'error'}}">
+      <icon type="warn" size="40" />
+      <view class="message pstatemessage">{{message}}</view>
+      <button class="retrybtn" type="warn" catchtap="onRetry">重试</button>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,142 @@
+/**index.wxss**/
+page{
+	width: 100%;
+}
+.container{
+	width: 100%;
+	background-color: #eeeeee;
+	padding-top: 104rpx;
+}
+.topform{
+	width: 100%;
+	background-color: #0e5aaa;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 999;
+}
+.sousuo{
+  width: 500rpx;
+  height: 60rpx;
+  margin: 22rpx 0;
+  padding: 0 25rpx;
+  display: flex;
+	flex-direction: row;
+	align-items: center;
+  border-radius: 52rpx;
+  background-color: #fff;
+}
+
+.ss_btn{
+  width: 40rpx;
+  height: 40rpx;
+	margin-right: 10rpx;
+	position: relative;
+}
+.ss_btn button{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+}
+.sousuo .ipt{
+	flex: 1;
+	padding-right: 10px;
+	font-size: 30rpx;
+	text-align: center;
+}
+/*swiper*/
+.swiper{	
+	width: 100%;
+	height: 413rpx;
+}
+.list{
+	width: 100%;
+	padding: 29rpx 28rpx 4rpx;
+	box-sizing: border-box;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.pageOne{
+	width: 338rpx;
+	border-radius: 10rpx;
+	background-color: #fff;
+	padding-bottom: 15px;
+	margin-bottom: 18rpx;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.pgimg{
+	width: 338rpx;
+	height: 338rpx;
+	padding-top:26rpx;
+	border-bottom: 1px solid #eeeeee;
+}
+.spname{
+	width: 302rpx;
+	height: 60rpx;
+	line-height: 60rpx;
+	font-size: 22rpx;
+	color: #333;
+	text-overflow:ellipsis;
+	 white-space:nowrap; 
+	 overflow:hidden;
+}
+.pri{
+	font-size: 22rpx;
+	color: #999;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	padding: 0 18rpx;
+	box-sizing: border-box;
+	margin-bottom: 20rpx;
+}
+
+.pri1{
+	font-size: 22rpx;
+	color: #999;
+	text-decoration:line-through;
+}
+.pri2{
+	font-size: 28rpx;
+	color: #fe0042;
+}
+.pri3{
+	font-size: 22rpx;
+	color: #fe0042;
+}
+.buy{
+	width: 306rpx;
+	height: 55rpx;
+	font-size: 26rpx;
+	color: #fff;
+	border-radius: 8rpx;
+	background: #fe0042;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.more{
+	margin-bottom: 20px;
+	width: 695rpx;
+	height: 80rpx;
+	background-color: #fff;
+	border-radius: 6rpx;
+	color: #333;
+	font-size: 28rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.loadb{
+	font-size: 26rpx;
+	color: #999;
+}

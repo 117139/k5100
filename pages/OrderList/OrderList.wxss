@@ -1,0 +1,140 @@
+.container{
+	background: #eeeeee;
+	padding-top: 17rpx;
+}
+.zanwu{
+	font-size: 24rpx;
+	color: #999;
+	line-height: 140rpx;
+}
+.address{
+	display: flex;
+	width: 100%;
+	height: 153rpx;
+	padding: 0 28rpx;
+	box-sizing: border-box;
+	background-color: #fff;
+	align-items: center;
+}
+.add_l{
+	height: 80%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	flex: 1;
+	
+}
+.al_1{
+	font-size: 30rpx;
+	color: #333;
+}
+.l_tel{
+	margin-left: 47rpx;
+}
+.al_2{
+	width: 670rpx;
+	font-size: 24rpx;
+	color: #999;
+	text-overflow:ellipsis;
+	 white-space:nowrap; 
+	 overflow:hidden;
+}
+.add_r{
+	width: 23rpx;
+	height: 40rpx;
+}
+.orderbder{
+	width: 100%;
+	height: 6rpx;
+	display: flex;
+}
+.goodsBox{
+	width: 100%;
+}
+.goodsOne{
+	width: 100%;
+	padding: 0 28rpx;
+	box-sizing: border-box;
+	background-color: #fff;
+	margin-bottom: 17rpx;
+}
+.goodsdft{
+	padding: 38rpx 0 18rpx;
+	display: flex;
+	border-bottom: 1px solid #eeeeee;
+}
+.goodsImg{
+	width: 138rpx;
+	height: 138rpx;
+	border: 1px solid #d2d2d2;
+	margin-right: 40rpx;
+}
+.goodsInr{
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.sptype{
+	font-size: 32rpx;
+	color: #333;
+	display: flex;
+	justify-content: space-between;
+}
+.goodsInr1{
+	display:-webkit-box !important;  
+	overflow:hidden;
+	text-overflow:ellipsis;
+	word-break:break-all;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:2;
+	font-size: 28rpx;
+	color: #999;
+}
+
+.xiaoji{
+	text-align: right;
+	font-size: 28rpx;
+	color: #333;
+	padding: 30rpx 0;
+}
+.ml10{
+	margin-left: 10px;
+}
+.xjjine{
+	font-size: 32rpx;
+	color: #fe0042;
+}
+.ordercaozuo{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	font-size: 32rpx;
+	color: #fe0042;
+	/* padding-bottom: 25rpx; */
+}
+.confirmBtn{
+	width: 180rpx;
+	height: 64rpx;
+	border-radius: 32rpx;
+	font-size: 24rpx;
+	color: #fe0042;
+	border:1px solid #fe0042;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.cancelBtn{
+	color: #999999;
+	border:1px solid #999999;
+	margin-right: 30rpx;
+}
+.caozuo{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.orderstatus{
+	font-size: 24rpx;
+	color: #fe0042;
+}

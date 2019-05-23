@@ -1,0 +1,35 @@
+<!--logs.wxml-->
+<import src="/utils/pageState/index.wxml" />
+<template is="pageState" data="{{...pageState}}" />
+<view class="container log-list">
+  <view class="addressOne" wx:for="{{addresslist}}" wx:for-index="idx"          
+          wx:for-item="item" 
+          wx:key="idx">
+		<view class="addp1">
+			<text>{{item.name}}</text>
+			<text>{{item.mobile}}</text>
+		</view>
+		<view class="addp2">{{item.province}}{{item.city}}{{item.county}}{{item.address}}</view>
+		<view class="addsetting">
+			<view class="setting1" data-id="{{item.user_member_shopping_address_id}}" bindtap="selecmr">
+				<view class="mricon {{item.default_add==1?'mricon1':''}}">
+					<icon  wx:if="{{item.default_add==1}}" size="13" type="success" color="#135eac" />
+
+				</view>
+				默认地址
+			</view>
+			<view class="setcz">
+				<view class="setting2" data-id="{{idx}}" bindtap="addressEdit">编辑</view>
+				<view class="setting3" data-id="{{item.user_member_shopping_address_id}}" bindtap="addressDel">删除</view>
+			</view>
+		</view>
+	</view>
+	<view class="fixbottom">
+		<navigator class="addbtn" url="/pages/addAdd/addAdd">
+			<view class="addicon">
+				<image src="/static/images/my/addicon.png"></image>
+			</view>
+			添加新地址
+		</navigator>
+	</view>
+</view>

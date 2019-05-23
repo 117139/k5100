@@ -1,0 +1,270 @@
+@import '../../vendor/wxParse/wxParse.wxss';
+
+.container{
+	padding-bottom: 100rpx;
+}
+.swiper{	
+	width: 100%;
+	height:750rpx;
+}
+.goodsmsg{
+	width: 100%;
+	padding: 0 28rpx 22rpx;
+	box-sizing: border-box;
+	background-color: #fff;
+	margin-bottom: 25rpx;
+}
+.goodsname{
+	width: 100%;
+	font-size: 30rpx;
+	color: #333;
+	padding: 5rpx 0;
+	line-height: 45rpx;
+	display:-webkit-box !important;  
+	overflow:hidden;
+	text-overflow:ellipsis;
+	word-break:break-all;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:2;
+}
+.goodsjg{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: 16px;
+	border-bottom: 1px solid #eeeeee;
+}
+.scj{
+	font-size: 26rpx;
+	color: #999;
+}
+.ghngj{
+	font-size: 26rpx;
+	color: #fe0042;
+}
+.ghngj>text{
+	font-size: 34rpx;
+}
+.tabletit{
+	width: 100%;
+	height: 60rpx;
+	font-size: 26rpx;
+	color: #333;
+	display: flex;
+	align-items: center;
+}
+.table1{
+	width: 100%;
+	border:1px solid #dadada;
+	border-right: 0;
+	border-bottom: 0;
+	font-size: 26rpx;
+	color: #8e8e8e;
+}
+.tr1{
+	width: 100%;
+	display: flex;
+}
+
+.th1,.td1 {
+	flex: 1;
+	height: 56rpx;
+	border-bottom: 1px solid #dadada;
+	border-right: 1px solid #dadada;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.guige{
+	width: 100%;
+	height: 70rpx;
+	padding: 0 28rpx;
+	box-sizing: border-box;
+	background-color: #fff;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20rpx;
+}
+.guige_l{
+	display: flex;
+	align-items: center;
+	font-size: 26rpx;
+	color: #333;
+}
+.guige_l_name{
+	color: #999;
+	margin-right: 25rpx;
+}
+.guige_r{
+	width: 44rpx;
+	height: 44rpx;
+}
+.goodsmsgs{
+	width: 100%;
+}
+.goodsdetailsimg{
+	height: 1175rpx;
+}
+/**/
+.bottomBox{
+	width: 100%;
+	height: 100rpx;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 99;
+	display: flex;
+	background-color: #fff;
+}
+.opengwc{
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.l_icon{
+	width: 66rpx;
+	height: 66rpx;
+	position: relative;
+}
+
+.goodsnum{
+	position: absolute;
+	top: 10rpx;
+	right: 8rpx;
+	width: 20rpx;
+	height: 20rpx;
+	border-radius: 50%;
+	border: 1px solid #d24845;
+	font-size: 18rpx;
+	color: #d24845;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #fff;
+}
+.l_name{
+	font-size: 22rpx;
+	color: #333;
+}
+.buybtn{
+	width: 300rpx;
+	height: 100rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #fe0042;
+	color: #fff;
+	font-size: 30rpx;
+}
+.jrgwc{
+	width: 300rpx;
+	height: 100rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgb(255, 173, 65);
+	color: #fff;
+	font-size: 30rpx;
+	
+}
+
+/***/
+.popopBox{
+	width: 100%;
+	padding: 20rpx 28rpx 0;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	height: 760rpx;
+}
+.popopBox1{
+	width: 100%;
+	display: flex;
+}
+.goodsimg{
+	margin-top: 16rpx;
+	width: 246rpx;
+	height: 246rpx;
+	border:1rpx solid #d2d2d2;
+	border-radius: 16rpx;
+	overflow: hidden;
+	margin-right: 30rpx;
+}
+.goodstkjg{
+	flex: 1;
+	position: relative;
+}
+.closebtn{
+	width: 37rpx;
+	height: 37rpx;
+	border-radius: 50%;
+	border: 1px solid #dddddd;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.tkpri{
+	font-size: 34rpx;
+	color: #fe0042;
+	margin: 80rpx 0 25rpx;
+}
+.tkname{
+	display:-webkit-box !important;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	word-break:break-all;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:2;
+	line-height: 45rpx;
+	font-size: 24rpx;
+	color: #333;
+}
+.tkguigetit{
+	font-size: 26rpx;
+	color: #333;
+	padding: 50rpx 0 40rpx;
+}
+.guigeBox{
+	display: felx;
+	align-items: center;
+}
+.guigeOne{
+	/* width: 114rpx; */
+	height: 50rpx;
+	padding: 0 10rpx;
+	border-radius: 8rpx;
+	border: 1px solid #999999;
+	font-size: 26rpx;
+	color: #333;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 38rpx;
+}
+.guigeOne.cur{
+	border: 1px solid #fe0042;
+	color: #fe0042;
+}
+.countnum{
+	display: flex;
+	justify-content: space-between;
+	font-size: 26rpx;
+	color: #333;
+	margin-top: 60rpx;
+}
+.czbtnG{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	display: flex;
+}
+.czbtnG .jrgwc,.czbtnG .buybtn{
+	width: 375rpx;
+}

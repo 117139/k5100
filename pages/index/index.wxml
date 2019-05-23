@@ -1,0 +1,53 @@
+<!--index.wxml-->
+<import src="/utils/pageState/index.wxml" />
+<template is="pageState" data="{{...pageState}}" />
+<view class="container">
+  <form class="topform" bindsubmit="formSubmit">
+    <view class='sousuo'>
+  		<view class="ipt">
+  			<input name="sr" placeholder="搜索商品"></input>
+  		</view>
+  		<view class='ss_btn'>
+  			<button  form-type="submit"></button>
+  			<image src="/static/images/sousuo.png"></image>
+  		</view>
+  	</view>
+  </form >
+	<swiper class="swiper"
+		indicator-dots="{{indicatorDots}}"
+		autoplay="{{autoplay}}"
+		interval="{{interval}}"
+		duration="{{duration}}"
+		indicator-active-color='#fff'
+		circular=true
+	>
+		<block wx:for="{{bannerimg}}" wx:for-index="idx"          
+          wx:for-item="item" 
+          wx:key="idx">
+			<swiper-item>
+				<image src="{{item}}" class="slide-image" width="355" height="150" />
+			</swiper-item>
+		</block>
+	</swiper>
+	<view class="list">
+		<view class="pageOne" wx:for="{{sp}}" wx:for-index="idx" 
+          wx:for-item="item" bindtap="opengoods" data-id="{{item.goods_sku_id}}"
+          wx:key="idx">
+			<view class="pgimg" data-id="{{idx}}">
+				<image src="{{spimg[idx]}}"></image>
+			</view>
+			<view class="spname">{{item.goods_sku_name}}</view>
+			<view class="pri">
+				<view>市场价: <text class="pri1">￥{{item.market_price}}</text> </view>  
+				<view class="pri2">￥{{item.internal_price}}</view> 
+				<!-- <view wx:if="{{item.is_ladder_pricing==1}}" class="pri3">￥{{item.internal_price}}</view> -->
+			</view>
+			<view class="buy">内部购买</view>
+		</view>
+	</view>
+	<view wx:if="{{more}}" class="more" bindtap="getshoplist">
+		查看更多>
+	</view>
+	<view class="loadb" wx:if="{{!more&&sp.length!=0}}">全部加载完毕</view>
+	<view class="loadb" wx:if="{{sp.length==0}}">暂无数据</view>
+</view>

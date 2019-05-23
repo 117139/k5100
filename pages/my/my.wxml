@@ -1,0 +1,76 @@
+<!--my.wxml-->
+<view class="container log-list">
+  <view class="mybanner">
+		<image class="bg" src="/static/images/my/mybg.jpg"></image>
+		<view class="mymsg">
+			<view class="myhead">
+				<!-- <image class="bg" src="/static/images/my/mytx.jpg"></image> -->
+				<image class="bg" src="{{userInfo.avatarUrl}}" data-imgurl="{{userInfo.avatarUrl}}" bindtap="pveimg"></image>
+			</view>
+			<view class="myname">{{userInfo.nickName}}</view>
+		</view>
+	</view>
+	<view class="ddstate">
+		<navigator class="stateOne" url="/pages/OrderList/OrderList?id=-2">
+			
+			<view class="stateicon">
+				<image class="bg" src="/static/images/my/mystate_03.png"></image>
+			</view>
+			<view>全部订单</view>
+		</navigator>
+		<navigator class="stateOne" url="/pages/OrderList/OrderList?id=0">
+			<view class="stateicon">
+				<image class="bg" src="/static/images/my/mystate_05.png"></image>
+			</view>
+			<view>未付款</view>
+		</navigator>
+		<navigator class="stateOne" url="/pages/OrderList/OrderList?id=1">
+			<view class="stateicon">
+				<image class="bg" src="/static/images/my/mystate_07.png"></image>
+			</view>
+			<view>待取货</view>
+		</navigator>
+		<navigator class="stateOne" url="/pages/OrderList/OrderList?id=3">
+			<view class="stateicon">
+				<image src="/static/images/my/mystate_09.png"></image>
+			</view>
+			<view>已完成</view>
+		</navigator>
+	</view>
+	<view class="myguanli">
+
+		<navigator class="mycell" url="/pages/myaddress/myaddress?id=1">
+			<view class="cell_l">
+				<view class="glicon">
+					<image src="/static/images/my/mygl_03.png"></image>
+				</view>
+				地址管理
+			</view>
+			<view class="cnext">
+				<image src="/static/images/my/mygl_06.png"></image>
+			</view>
+		</navigator>
+		<navigator class="mycell" url="/pages/about/about">
+			<view class="cell_l">
+				<view class="glicon">
+					<image src="/static/images/my/mygl_10.png"></image>
+				</view>
+				关于我们
+			</view>
+			<view class="cnext">
+				<image src="/static/images/my/mygl_06.png"></image>
+			</view>
+		</navigator>
+		<!-- <view class="mycell">
+			<view class="cell_l">
+				<view class="glicon">
+					<image src="/static/images/my/mygl_12.png"></image>
+				</view>
+				设置
+			</view>
+			<view class="cnext">
+				<image src="/static/images/my/mygl_06.png"></image>
+			</view>
+		</view> -->
+	</view>
+</view>
