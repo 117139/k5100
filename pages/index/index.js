@@ -1,8 +1,7 @@
 //index.js
 //获取应用实例
-var pageState = require('../../utils/pageState/index.js')
 const app = getApp()
-// import pageState from '../../utils/pageState/index.js'
+var pageState = require('../../utils/pageState/index.js')
 Page({
   data: {
 		tokenstr: wx.getStorageSync('tokenstr'),
