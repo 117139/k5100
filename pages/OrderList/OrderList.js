@@ -17,9 +17,9 @@ Page({
 		sum:0
   },
   onLoad: function (option) {
-    if(option.id){
-			console.log(option.id)
-		}
+  //   if(option.id){
+		// 	console.log(option.id)
+		// }
 		let hmtltit
 		if(option.id==-2){
 			hmtltit="全部订单"

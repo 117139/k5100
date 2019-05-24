@@ -62,8 +62,8 @@
 		<!-- jieti -->
 	</view>
 	<view class="vbottom" wx:if="{{goods.length!==0}}">
-		<view class="selecAll">
-			<view class="xuanze1 all {{all==true? 'xuanze2':''}}" bindtap="selecAll">
+		<view class="selecAll" bindtap="selecAll">
+			<view class="xuanze1 all {{all==true? 'xuanze2':''}}">
 				<icon  wx:if="{{all==true}}" type="success" color="#fe0042" />
 			</view>
 			全选

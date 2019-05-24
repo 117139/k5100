@@ -152,7 +152,8 @@
 	</view>
 	<view class="fixbottom">
 		<view class="fb_l">￥{{sum}}</view>
-		<view class="subbtn" bindtap="subbtn">提交订单</view>
+		<view wx:if="{{paykg}}" class="subbtn"  bindtap="subbtn">提交订单</view>
+		<view wx:if="{{!paykg}}" class="subbtn subbtn1" >提交订单</view>
 	</view>
 	
 </view>

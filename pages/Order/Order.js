@@ -134,6 +134,9 @@ Page({
 		if(that.data.paykg==false){
 			return
 		}else{
+			wx.showLoading({
+				title:'订单提交中...'
+			})
 			that.setData({
 				paykg:false
 			})
@@ -174,6 +177,8 @@ Page({
 			dataType:'json',
 			method:'POST',
 			success(res) {
+				
+				wx.hideLoading()
 				console.log(res)
 				
 				if(res.data.error==-2){
@@ -192,6 +197,7 @@ Page({
 				}
 			},
 			fail(res) {
+				wx.hideLoading()
 				that.setData({
 					paykg:true
 				})

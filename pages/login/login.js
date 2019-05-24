@@ -45,9 +45,13 @@ Page({
 	},
 	getcode(){
 		let that =this
-		wx.showModal({
-			title:'获取验证码'
-		})
+		if(that.data.tel=='' || !(/^1\d{10}$/.test(that.data.tel))){
+			wx.showToast({
+				icon:'none',
+				title:'手机号有误'
+			})
+			return 
+		}
 		wx.request({
 			url:  app.IPurl1+'sendcode',
 			data:  {
@@ -156,14 +160,14 @@ Page({
 			});
 			return false;
 		}
-		// if(formresult.code!=that.data.yzm) {
-		// 	wx.showToast({
-		// 		title: '验证码错误',
-		// 		duration: 2000,
-		// 		icon:'none'
-		// 	});
-		// 	return false;
-		// }
+		if(formresult.code!=that.data.yzm) {
+			wx.showToast({
+				title: '验证码错误',
+				duration: 2000,
+				icon:'none'
+			});
+			return false;
+		}
 		wx.request({
 			url:  app.IPurl1+'login',
 			data:  {
