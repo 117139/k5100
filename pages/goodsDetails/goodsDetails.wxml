@@ -28,25 +28,26 @@
 			{{goodsd.goods_sku_name}}
 		</view>
 		<view class="goodsjg">
-			<view class="scj">市场价<text  class="scx" wx:if="{{goodsd.market_price!==''}}">￥{{goodsd.market_price}}</text></view><!-- 68.90 -->
+			<view class="scj">市场价<text  class="scx" wx:if="{{guige[type1].goods_sku_info}}">￥{{guige[type1].goods_sku_info.market_price}}</text></view><!-- 68.90 -->
 			<view class="ghngj">
-				国航内购价: <text wx:if="{{goodsd.internal_price!==''}}">￥{{goodsd.internal_price}}</text>
+				国航内购价: <text wx:if="{{guige[type1].goods_sku_info}}">￥{{guige[type1].goods_sku_info.internal_price==0?
+				guige[type1].goods_sku_info.ladder_pricing:guige[type1].goods_sku_info.internal_price}}</text>
 			</view>
 		</view>
-		<view class="tabletit" wx:if="{{goodsd.is_ladder_pricing}}">
+		<view class="tabletit" wx:if="{{goods_total_limit!=''}}">
 			本商品同一特惠周期内计价方式如下：
 		</view>
-		<view class="table1" wx:if="{{goodsd.is_ladder_pricing}}">
+		<view class="table1" wx:if="{{goods_total_limit!=''}}">
 			<view class="tr1">
 				<view class="th1">购买数量(箱)</view>
 				<view class="th1">价格</view>
 				<view class="th1">总供货量</view>
 			</view>
-			<view class="tr1" wx:for="{{pricelist}}" wx:for-index="idx"
+			<view class="tr1" wx:for="{{goods_total_limit}}" wx:for-index="idx"
 								wx:for-item="item" 
 								wx:key="idx">
 				<view class="td1">{{item.lower_num}}-{{item.upper_num}}</view>
-				<view class="td1">{{item.price}}元</view>
+				<view class="td1">{{guige[type1].goods_ladder_pricing_list[idx].price}}元</view>
 				<view class="td1">{{item.limit_num==0? '无':item.limit_num+'箱'}}</view>
 			</view>
 		</view>
@@ -54,7 +55,7 @@
 	<view class="guige" bindtap="sheetshow">
 		<view class="guige_l">
 			<view class="guige_l_name">规格</view>
-			 <view wx:if="{{guige[0]}}">{{cnum}}个，{{guige[0]}}</view>
+			 <view wx:if="{{guige[0]}}">{{cnum}}个，{{guige[type1].goods_sku_info.goods_unit}}</view>
 		</view>
 		<view class="guige_r">
 			<image src="/static/images/index/ggr_03.png"></image>
@@ -74,7 +75,8 @@
 				<view class="closebtn" bindtap="onClose">
 					<image src="/static/images/index/closebtn_03.jpg"></image>
 				</view>
-				<view class="tkpri">￥{{goodsd.internal_price}}</view>
+				<view class="tkpri">￥{{guige[type1].goods_sku_info.internal_price==0?
+				guige[type1].goods_sku_info.ladder_pricing:guige[type1].goods_sku_info.internal_price}}</view>
 				<view class="tkname">{{goodsd.goods_sku_name}}</view>
 			</view>
 		</view>
@@ -84,7 +86,7 @@
 								wx:for-item="item" 
 								wx:key="idx"
 								data-gg="{{idx}}"
-								bindtap="selegg">{{item}}</text>
+								bindtap="selegg">{{item.goods_sku_info.goods_unit}}</text>
 		</view>
 		<view class="countnum">
 			<text>数量</text>

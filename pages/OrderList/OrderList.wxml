@@ -1,5 +1,6 @@
 <!--logs.wxml-->
 <import src="/utils/pageState/index.wxml" />
+<wxs src="../../utils/filter.wxs" module="filter" />
 <template is="pageState" data="{{...pageState}}" />
 <view class="container">
 	<view class="zanwu" wx:if="{{goods.length==0}}">暂无内容</view>
@@ -38,7 +39,7 @@
 			</view>
 			<view class="caozuo">
 				<view class="xiaoji">
-					共{{shopNum[idx]}}件商品 <text class="ml10">实付款：</text><text class="xjjine">￥{{item.order_info.order_price}}</text>
+					共{{shopNum[idx]}}件商品 <text class="ml10">实付款：</text><text class="xjjine">￥{{filter.moneyFormat(item.order_info.order_price)}}</text>
 				</view>
 				<view class="ordercaozuo" wx:if="{{item.order_info.order_status==0}}">
 					<!-- <view class="confirmBtn cancelBtn" bindtap="cancelBtn">取消订单</view> -->

@@ -14,10 +14,13 @@ Page({
    
   },
 	onShow(){
-		this.getcar()
-		
+		var that=this
+		that.getcar()
+			
+
 	},
 	onReady(){
+		
 		// console.log(this.data.goods.length)
 		
 		
@@ -31,20 +34,20 @@ Page({
 		// console.log(e.currentTarget.dataset.selec)
 		let sid=e.currentTarget.dataset.selec
 		// console.log(this.data.goods_sele[sid].xuan)
-		if(this.data.goods_sele[sid].xuan==false){
-			this.data.goods_sele[sid].xuan=true
+		if(that.data.goods_sele[sid].xuan==false){
+			that.data.goods_sele[sid].xuan=true
 				that.setData({
-					goods_sele:this.data.goods_sele
+					goods_sele:that.data.goods_sele
 				});
 		}else{
-			this.data.goods_sele[sid].xuan=false
+			that.data.goods_sele[sid].xuan=false
 				that.setData({
-					goods_sele:this.data.goods_sele
+					goods_sele:that.data.goods_sele
 				});
 		}
 	  let qx=true
-	  for (let i in this.data.goods_sele) {
-	  	if(this.data.goods_sele[i].xuan==false){
+	  for (let i in that.data.goods_sele) {
+	  	if(that.data.goods_sele[i].xuan==false){
 	  		qx=false
 	  		break
 	  	}
@@ -52,16 +55,17 @@ Page({
 		console.log(qx)
 		//触发全选
 	  if(qx==true){
-	  	this.setData({
+	  	that.setData({
 	  		all:true
 	  	})
 	  }else{
-			this.setData({
+			that.setData({
 				all:false
 			})
 		}
+		that.ladderpri_gb()
 		//计算总价
-		this.countpri()
+		that.countpri()
 	},
 	onChange(e){
 		console.log(e.currentTarget.dataset.selec)
@@ -92,6 +96,7 @@ Page({
 		this.setData({
 			goods_sele:this.data.goods_sele
 		});
+		this.ladderpri_gb()
 		//计算总价
 		this.countpri()
 	},
@@ -116,8 +121,9 @@ Page({
 				}
 			}
 		}
-		console.log(heji)
-		if(heji==0){
+		// console.log(heji)
+		heji=(heji/100).toFixed(2)
+		/*if(heji==0){
 			this.setData({
 				sum:'0.00'
 			})
@@ -134,22 +140,26 @@ Page({
 		let hj1 = heji.substring(0, heji.length-3);
 		let hj2 = heji.substring( heji.length-3, heji.length-1);
 		console.log(hj1+'.'+hj2)
-		heji=hj1+'.'+hj2
+		heji=hj1+'.'+hj2*/
 		this.setData({
 			sum:heji
 		})
 	},
-	//阶梯价
+	//阶梯价初始化
 	ladderpri(idx,num){
-		
+		// for(var i=0;i<idx;i++){
+		// 	
+		// }
 		let that = this
 		let ygnum=that.data.goods[idx].havenum  //已购
-		let jt=that.data.goods[idx].pricelist  //规则
+		let jt=that.data.goods[idx].limitlist  //规则
+		var jtpri=that.data.goods[idx].pricelist  //规则价格
 		let nownum=that.data.goods[idx].order_cart.goods_count//本次购买数量
 		if(num){
 			nownum=num
 		}
 		// let numz=ygnum+nownum
+		// console.log(jtpri)
 		let nownum1 //定义临时变量
 		let numlen //定义单个阶梯的限购数量
 		let jtlist=[]        //阶梯列表
@@ -159,10 +169,15 @@ Page({
 		let priladd=[]      //阶梯的价格
 		let Totalpri=0
 		let laddermsg=[]
-		for(let i in jt){
+		for(var i = 0; i < jt.length; i++){
+			// console.log(nownum)
+			// console.log(that.data)
+			// console.log(that.data.goods[idx].pricelist)
 			let lownum=jt[i].lower_num
 			let upnum=jt[i].upper_num
-			let bpri=jt[i].price
+			// console.log(jtpri[i])
+			
+			let bpri=jtpri[i].price
 			// console.log(lownum)
 			// console.log(upnum)
 			
@@ -199,8 +214,7 @@ Page({
 					Totalpri +=100*bpri*item1/100
 					laddermsg.push(ladderOne)
 				}
-			}
-			if(ygnum<lownum){   //后续阶梯（最小值大于已购）
+			}else if(ygnum<lownum){   //后续阶梯（最小值大于已购）
 				numlen=upnum-lownum+1   //当前阶梯的限购数量
 				if(jtzsy<numlen){
 					numlen=jtzsy
@@ -229,16 +243,152 @@ Page({
 					}
 					Totalpri +=100*bpri*numlen/100
 					laddermsg.push(ladderOne)
+					
 				}
+				
 			}
 		}
-
+		Totalpri=Totalpri.toFixed(2).toString()
 		let laddermsgs={
 			'laddermsg':laddermsg,
 			'Totalpri':Totalpri
 		}
 		// console.log(laddermsgs)
 		return laddermsgs
+	},
+	//阶梯价改变
+	ladderpri_gb(){
+		// console.log('ladderpri_gb0')
+		let that = this
+		let jtgsele=that.data.goods_sele
+		for(var idx=0;idx<jtgsele.length;idx++){
+			// console.log('ladderpri_gb1')
+			// console.log(jtgsele[idx].laddermsgs)
+			if(!jtgsele[idx].laddermsgs){
+				continue   //售罄
+			}
+			// console.log('ladderpri_gb')
+			let ygnum0=that.data.goods[idx].havenum  //已购
+			let newadd=0
+			for(var i=0;i<idx;i++){
+				if(jtgsele[i].goods_sku_id==jtgsele[idx].goods_sku_id){
+					
+					if(jtgsele[i].xuan){
+						newadd += jtgsele[i].num
+						// console.log('----------------------------'+newadd)
+					}
+				}
+				
+			}
+			// console.log(newadd)
+			let ygnum=ygnum0+newadd
+			let jt=that.data.goods[idx].limitlist  //规则
+			var jtpri=that.data.goods[idx].pricelist  //规则价格
+			let nownum=jtgsele[idx].num//本次购买数量
+			
+			// let numz=ygnum+nownum
+			// console.log(jtpri)
+			let nownum1 //定义临时变量
+			let numlen //定义单个阶梯的限购数量
+			let jtlist=[]        //阶梯列表
+			let jtnum=[]         //阶梯数量
+			let jtTotal=[]         //阶梯总价
+			let numladd=[]      //阶梯的区间
+			let priladd=[]      //阶梯的价格
+			let Totalpri=0
+			let laddermsg=[]
+			for(var i = 0; i < jt.length; i++){
+				// console.log(nownum)
+				// console.log(that.data)
+				// console.log(that.data.goods[idx].pricelist)
+				let lownum=jt[i].lower_num
+				let upnum=jt[i].upper_num
+				// console.log(jtpri[i])
+				
+				let bpri=jtpri[i].price
+				// console.log(lownum)
+				// console.log(upnum)
+				
+				let jtzsy=jt[i].limit_num-jt[i].saled_num
+				if(lownum-1<=ygnum&&ygnum<upnum){ //根据已购获取开始阶梯
+			       
+					let item1
+					item1=upnum-ygnum        //n1阶梯限售剩余
+					
+					if(jtzsy<item1){
+						item1=jtzsy
+					}
+					if(item1==0){
+						continue   //售罄
+					}
+					if(nownum<=item1){         //限售剩余足够
+						Totalpri +=100*bpri*nownum/100
+						let ladderOne={
+							'numladd':lownum+'-'+upnum,
+							'jtnum':nownum,
+							'priladd':bpri,
+							'jtTotal':100*bpri*nownum/100
+						}
+						laddermsg.push(ladderOne)
+						break;   //结束
+					}else{                   //限售剩余不足
+						nownum1=nownum-item1
+						let ladderOne={
+							'numladd':lownum+'-'+upnum,
+							'jtnum':item1,
+							'priladd':bpri,
+							'jtTotal':100*bpri*item1/100
+						}
+						Totalpri +=100*bpri*item1/100
+						laddermsg.push(ladderOne)
+					}
+				}else	if(ygnum<lownum){   //后续阶梯（最小值大于已购）
+					numlen=upnum-lownum+1   //当前阶梯的限购数量
+					if(jtzsy<numlen){
+						numlen=jtzsy
+					}
+					if(numlen==0){
+						continue   //售罄
+					}
+					if(nownum1<=numlen){  //限售剩余足够
+						let ladderOne={
+							'numladd':lownum+'-'+upnum,
+							'jtnum':nownum1,
+							'priladd':bpri,
+							'jtTotal':100*bpri*nownum1/100
+						}
+						Totalpri +=100*bpri*nownum1/100
+						laddermsg.push(ladderOne)
+						break;   //结束
+					}else{                   //限售剩余不足
+						nownum1=nownum1-numlen
+				
+						let ladderOne={
+							'numladd':lownum+'-'+upnum,
+							'jtnum':numlen,
+							'priladd':bpri,
+							'jtTotal':100*bpri*numlen/100
+						}
+						Totalpri +=100*bpri*numlen/100
+						laddermsg.push(ladderOne)
+						
+					}
+					
+				}
+			}
+			Totalpri=Totalpri.toFixed(2).toString()
+			let laddermsgs={
+				'laddermsg':laddermsg,
+				'Totalpri':Totalpri
+			}
+			// console.log(laddermsgs)
+			that.data.goods_sele[idx].laddermsgs=laddermsgs
+			// return laddermsgs
+		}
+		// console.log('------------------------------xiugai')
+		that.setData({
+			goods_sele:that.data.goods_sele
+		})
 	},
 	openOrder(){
 		let that = this
@@ -313,12 +463,13 @@ Page({
 						goods_sele:that.data.goods_sele
 					})
 					console.log(thisidx)
-					let newladd=that.ladderpri(thisidx,that.data.goods_sele[thisidx].num)
-					console.log(newladd)
-					that.data.goods_sele[thisidx].laddermsgs=newladd
-					that.setData({
-						goods_sele:that.data.goods_sele
-					})
+					// let newladd=that.ladderpri(thisidx,that.data.goods_sele[thisidx].num)
+					// console.log(newladd)
+					// that.data.goods_sele[thisidx].laddermsgs=newladd
+					// that.setData({
+					// 	goods_sele:that.data.goods_sele
+					// })
+					that.ladderpri_gb()
 					// that.getcar()
 					//计算总价
 					that.countpri()
@@ -357,7 +508,7 @@ Page({
 						goods:resultd
 					})
 					let imgb=[]
-					for(let i in resultd){
+					for(let i = 0;i<resultd.length;i++){
 						// console.log(rlist[i].goods_img)
 						let rlb=resultd[i].order_cart.goods_img.split(",")
 						imgb.push(rlb[0])
@@ -368,23 +519,25 @@ Page({
 					})
 					//设置选中的数组
 					let arra=[]
-					for (let i=0;i<that.data.goods.length;i++) {
+					for (let i=0;i<resultd.length;i++) {
 						
-						if(that.data.goods[i].order_cart.is_ladder_pricing==1){
+						if(resultd[i].order_cart.is_ladder_pricing==1){
 							
 							arra.push({
 								xuan:false,
-								pri:that.data.goods[i].order_cart.internal_price,
-								num:that.data.goods[i].order_cart.goods_count,
-								order_cart_id:that.data.goods[i].order_cart.order_cart_id,
+								pri:resultd[i].order_cart.internal_price,
+								num:resultd[i].order_cart.goods_count,
+								order_cart_id:resultd[i].order_cart.order_cart_id,
+								goods_sku_id:resultd[i].order_cart.goods_sku_id,
 								laddermsgs:that.ladderpri(i)
 							})
 						}else{
 							arra.push({
 								xuan:false,
-								pri:that.data.goods[i].order_cart.internal_price,
-								num:that.data.goods[i].order_cart.goods_count,
-								order_cart_id:that.data.goods[i].order_cart.order_cart_id
+								pri:resultd[i].order_cart.internal_price,
+								num:resultd[i].order_cart.goods_count,
+								order_cart_id:resultd[i].order_cart.order_cart_id,
+								goods_sku_id:resultd[i].order_cart.goods_sku_id
 							})
 						}
 					}
@@ -393,8 +546,9 @@ Page({
 						all:false,
 						sum:'0.00'
 					})
-					
+					that.countpri()
 				}
+				that.selecAll()
 				pageState1.finish()    // 切换为finish状态
 			},
 			fail() {

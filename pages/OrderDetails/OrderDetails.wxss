@@ -65,18 +65,20 @@
 }
 .goodsInr{
 	width: 500rpx;
-	padding: 20rpx 0;
-	line-height: 50rpx;
-	height: 120rpx; 
-	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	
+	font-size: 28rpx;
+	color: #999;
+}
+.slh2{
 	display:-webkit-box !important;  
 	overflow:hidden;
 	text-overflow:ellipsis;
 	word-break:break-all;
 	-webkit-box-orient:vertical;
 	-webkit-line-clamp:2;
-	font-size: 28rpx;
-	color: #999;
 }
 .goods2{
 	width: 100%;
@@ -92,10 +94,10 @@
 	color: #333;
 }
 .xiaoji{
-	text-align: right;
+	/* text-align: right; */
 	font-size: 28rpx;
 	color: #333;
-	padding: 30rpx 0;
+	/* padding: 30rpx 0; */
 }
 .ml10{
 	margin-left: 10px;
@@ -171,4 +173,19 @@
 	background-color:#fe0042;
 	color:#fff;
 	font-size:30rpx;
+}
+.ziti{
+	margin-bottom:17rpx;
+}
+.ztmsgbox{
+	display: flex;
+	flex-direction: column;
+}
+.ztmsg{
+	font-size: 28rpx;
+	color: #333;
+	display: flex;
+}
+.ztmsginr{
+	flex: 1;
 }

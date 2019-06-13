@@ -129,10 +129,10 @@ App({
 		// })	
 	},
 	//打开商品详情页
-	opengoods(id) {
+	opengoods(id,sku_info_id) {
 		console.log(id)
 	  wx.navigateTo({
-	    url: '/pages/goodsDetails/goodsDetails?id=' + id
+	    url: '/pages/goodsDetails/goodsDetails?id=' + id+'&sku_info_id='+sku_info_id
 	  })
 	},
 	openOrder(id,type){

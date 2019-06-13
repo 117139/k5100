@@ -31,15 +31,20 @@
 	</swiper>
 	<view class="list">
 		<view class="pageOne" wx:for="{{sp}}" wx:for-index="idx" 
-          wx:for-item="item" bindtap="opengoods" data-id="{{item.goods_sku_id}}"
+          wx:for-item="item" bindtap="opengoods" data-id="{{item.goods_sku.goods_sku_id}}"
+					data-sku_info_id="{{item.goods_sku_info_list[0].sku_info_id}}"
           wx:key="idx">
 			<view class="pgimg" data-id="{{idx}}">
 				<image src="{{spimg[idx]}}"></image>
 			</view>
-			<view class="spname">{{item.goods_sku_name}}</view>
+			<view class="spname">{{item.goods_sku.goods_sku_name}}</view>
 			<view class="pri">
-				<view>市场价: <text class="pri1">￥{{item.market_price}}</text> </view>  
-				<view class="pri2">￥{{item.internal_price}}</view> 
+				<view>市场价:<text class="pri1">￥{{	item.goods_sku_info_list[0].market_price}}
+					</text> 
+				</view>  
+				<view class="pri2">￥{{item.goods_sku_info_list[0].internal_price==0?
+						item.goods_sku_info_list[0].ladder_pricing : 
+						item.goods_sku_info_list[0].internal_price}}</view> 
 				<!-- <view wx:if="{{item.is_ladder_pricing==1}}" class="pri3">￥{{item.internal_price}}</view> -->
 			</view>
 			<view class="buy">内部购买</view>

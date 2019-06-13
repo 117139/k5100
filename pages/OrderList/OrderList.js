@@ -149,7 +149,7 @@ Page({
 				if(res.data.error==0){
 	
 						let resultd=res.data.list
-						console.log(res.data.list)
+						// console.log(res.data.list)
 						that.setData({
 							goods:resultd
 						})
@@ -169,7 +169,7 @@ Page({
 							shopnum.push(shopnum1)
 							imgb.push(imgb1)
 						}
-						console.log(shopnum)
+						// console.log(shopnum)
 						that.data.spimg = that.data.spimg.concat(imgb)
 						that.data.shopNum = that.data.shopNum.concat(shopnum)
 						that.setData({

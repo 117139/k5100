@@ -1,6 +1,7 @@
 <!--fenlei.wxml-->
 <import src="/utils/pageState/index.wxml" />
 <template is="pageState" data="{{...pageState}}" />
+<wxs src="../../utils/filter.wxs" module="filter" />
 <view class="container">
   <scroll-view class="leftB" scroll-y style="height: {{wh}}px;">
 		<view wx:for="{{shopgroups}}" wx:for-index="idx"          
@@ -23,14 +24,17 @@
 			<view class="spone" wx:for="{{shoplist}}" wx:for-index="idx"          
 				wx:for-item="item" 
 				wx:key="idx"
-				data-id="{{item.goods_sku_id}}"
+				data-id="{{item.goods_sku.goods_sku_id}}"
 				bindtap="opengoods">
 				<view class="spimg">
 					<image src="{{spimg[idx]}}"></image>
 				</view>
 				<view class="spmsg">
-					<view class="spmsg1">{{item.goods_sku_name}}</view>
-					<view class="spmsg2">￥{{item.internal_price}}</view>
+					
+					<view class="spmsg1">{{item.goods_sku.goods_sku_name}}</view>
+					<view class="spmsg2">￥{{item.goods_sku_info_list[0].internal_price==0?
+						item.goods_sku_info_list[0].ladder_pricing : 
+						item.goods_sku_info_list[0].internal_price}}</view>
 				</view>
 			</view>
 		</view>

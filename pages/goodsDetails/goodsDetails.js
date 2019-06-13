@@ -17,6 +17,7 @@ Page({
 			{qj:'10-',num:5,pri:72,gs:0,spri:360}
 		],
 		sheetshow:false,         //规格弹框控制
+		goods_total_limit:'',  //商品阶梯
 		guige:['1.2L','600mL'],  //规格
 		type1:0,         //规格index
 		cnum:1           ,//数量
@@ -26,12 +27,12 @@ Page({
   },
   onLoad: function (option) {
     if(option.id){
-			console.log(option.id)
+			// console.log(option.id)
 			this.setData({
 				goods_sku_id:option.id
 			})
 		}
-		this.getGoodsDetails(option.id)
+		this.getGoodsDetails(option.id,option.sku_info_id)
   },
 	onReady: function () {
 		var that=this;
@@ -73,7 +74,8 @@ Page({
 				tokenstr:wx.getStorageSync('tokenstr'),
 				goods_sku_id:that.data.goods_sku_id,						//(商品id) 
 				num:that.data.cnum,															//（数量） 
-				goods_unit:that.data.guige[that.data.type1]			//(规格名称) 
+				goods_unit:that.data.guige[that.data.type1].goods_sku_info.goods_unit			,//(规格名称) 
+				sku_info_id:that.data.guige[that.data.type1].goods_sku_info.sku_info_id
 			},
 			header: {
 				'content-type': 'application/x-www-form-urlencoded' 
@@ -105,24 +107,24 @@ Page({
 	
 		// let goodsxq=JSON.stringify(this.data.goodsd)
 		// let goodsname=this.data.goodsd.goods_sku_name
-		let goodsguige=this.data.guige[this.data.type1]
+		let goodsguige=this.data.guige[this.data.type1].goods_sku_info.goods_unit
 		let goodsnum=this.data.cnum
 		// let goodsladder=this.data.goodsd.is_ladder_pricing
 		// let goodsxq=this.data.goodsd
 		// console.log(goodsxq)
 		 wx.navigateTo({
-		  url: '/pages/Order/Order?id=' + that.data.goods_sku_id+'&goodsguige=' + goodsguige+'&goodsnum=' + goodsnum
+		  url: '/pages/Order/Order?id=' + that.data.goods_sku_id+'&goodsguige=' + goodsguige+'&ggtype=' + this.data.type1+'&goodsnum=' + goodsnum
 		})
 	},
 	opengwc(e) {
 	  let id = e.currentTarget.dataset.id
-		console.log(id)
+		// console.log(id)
 		
 	  wx.navigateTo({
 	    url: '/pages/fcar/car?id=' + id
 	  })
 	},
-	getGoodsDetails(id){
+	getGoodsDetails(id,gid){
 		const pageState1 = pageState.default(this)
 		pageState1.loading()    // 切换为loading状态
 		let that = this
@@ -147,14 +149,15 @@ Page({
 				}
 				if(res.data.error==0){
 					let resultd=res.data.data
-					console.log(res.data)
+					// console.log(res.data)
 						that.setData({
 							goodsd:resultd,
 						})
 						var article = resultd.goods_describe
 						WxParse.wxParse('article', 'html', article, that, 5);
 						let rlb=resultd.goods_img.split(",")
-						let guige=resultd.goods_unit.split(",")
+						let guige=res.data.shopinfo_sku_price_list
+						let goods_total_limit=res.data.goods_total_limit
 						that.data.spimg = that.data.spimg.concat(rlb)
 						if(resultd.is_ladder_pricing==1){
 							that.setData({
@@ -165,7 +168,8 @@ Page({
 						}
 						that.setData({
 							spimg:that.data.spimg,
-							guige:guige
+							guige:guige,
+							goods_total_limit:goods_total_limit
 						})
 				}
 				pageState1.finish()    // 切换为finish状态

@@ -1,5 +1,6 @@
 <!--gwc.wxml-->
 <import src="/utils/pageState/index.wxml" />
+<wxs src="../../utils/filter.wxs" module="filter" />
 <template is="pageState" data="{{...pageState}}" />
 <view class="container">
 	<view class="zanwu" wx:if="{{goods.length==0}}">暂无内容</view>
@@ -16,27 +17,38 @@
 				</view>
 			</view>
 			<view class="goodsImg" data-gid="{{item.order_cart.goods_sku_id}}" bindtap="opengoodsxq">
-				<image src="{{spimg[0]}}"></image>
+				<image src="{{spimg[idx]}}"></image>
 			</view>
 			<view class="goodsinr">
-				<view class="goodsname" data-gid="{{item.order_cart.goods_sku_id}}" bindtap="opengoodsxq">{{item.order_cart.goods_sku_name}}</view>
-				<view class="goodspri" data-gid="{{item.order_cart.goods_sku_id}}" bindtap="opengoodsxq">
-					市场价<text class="scx">￥{{item.order_cart.market_price}}</text>
+				<view class="goodsname" data-gid="{{item.order_cart.goods_sku_id}}" bindtap="opengoodsxq">
+					{{item.order_cart.goods_sku_name}} {{item.order_cart.goods_unit}}
 				</view>
+				<view class="goodspri" data-gid="{{item.order_cart.goods_sku_id}}" bindtap="opengoodsxq">市场价<text class="scx">￥{{item.order_cart.market_price}}</text></view>
 				<view class="goodspri1">
-					<text  data-gid="{{item.order_cart.goods_sku_id}}" bindtap="opengoodsxq">￥{{item.order_cart.internal_price}}</text>
+					<text wx:if="{{item.order_cart.is_ladder_pricing==0}}" data-gid="{{item.order_cart.goods_sku_id}}" bindtap="opengoodsxq">￥{{item.order_cart.internal_price}}</text>
+					<text wx:if="{{item.order_cart.is_ladder_pricing==1}}"
+					 data-gid="{{item.order_cart.goods_sku_id}}"
+						bindtap="opengoodsxq">￥{{item.pricelist[0].price}}~{{item.pricelist[item.pricelist.length-1].price}}</text>
+					<!-- <van-stepper custom-class="steppera" 
+					input-class="vanipt"
+					plus-class="vantjia"
+					minus-class="vantjian"
+					value="{{ item.order_cart.goods_count }}" 
+					data-selec="{{idx}}" 
+					bind:focus="onfocus"
+					bind:change="onChange" /> -->
 					<view class="vstepper steppera">
-						<view catchtap="onNum" data-idx="{{idx}}" data-ad="-" data-id="{{item.order_cart.order_cart_id}}" class="vantjian">-</view>
+						<view bind:tap="onNum" data-idx="{{idx}}" data-ad="-" data-id="{{item.order_cart.order_cart_id}}" class="vantjian">-</view>
 						<input class="vanipt" disabled value="{{ goods_sele[idx].num }}"></input>
-						<view catchtap="onNum" data-idx="{{idx}}" data-ad="+" data-id="{{item.order_cart.order_cart_id}}" class="vantjia">+</view>
+						<view bind:tap="onNum" data-idx="{{idx}}" data-ad="+" data-id="{{item.order_cart.order_cart_id}}" class="vantjia">+</view>
 					</view>
 				</view>
 			</view>
 		</view>	
 		<!-- jieti -->
-		<view class="goods2" wx:if="{{item.order_cart.is_ladder_pricing}}">
-			<view class="goods2tit">本特惠限购期内您已订购本商品{{item.havenum}}件,本次拟购买商品{{item.order_cart.goods_count}}件。价格如下：</view>
-			<view class="table1">
+		<view class="goods2" wx:if="{{item.order_cart.is_ladder_pricing==1}}">
+			<!-- <view class="goods2tit">本特惠限购期内您已订购本商品{{item.havenum}}件,本次拟购买商品{{goods_sele[idx].num}}件。价格如下：</view> -->
+			<view class="table1" wx:if="{{goods_sele[idx].xuan==true}}">
 				<view class="tr1">
 					<view class="th1">数量区间</view>
 					<view class="th1">件数</view>
@@ -48,8 +60,8 @@
 									wx:key="idx1">
 					<view class="td1">{{item1.numladd}}</view>
 					<view class="td1">{{item1.jtnum}}</view>
-					<view class="td1">{{item1.priladd}}</view>
-					<view class="td1">{{item1.jtTotal}}</view>
+					<view class="td1">{{filter.moneyFormat(item1.priladd)}}</view>
+					<view class="td1">{{filter.moneyFormat(item1.jtTotal)}}</view>
 				</view>
 			</view>
 		</view>

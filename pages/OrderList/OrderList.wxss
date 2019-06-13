@@ -97,7 +97,7 @@
 	font-size: 28rpx;
 	color: #333;
 	padding: 30rpx 0;
-}
+} 
 .ml10{
 	margin-left: 10px;
 }

@@ -149,7 +149,7 @@ Page({
 						let imgb=[]
 						for(let i in rlist){
 							console.log(rlist[i].goods_img)	
-							let rlb=rlist[i].goods_img.split(",")
+							let rlb=rlist[i].goods_sku.goods_img.split(",")
 							imgb.push(rlb[0])
 						}
 						that.data.spimg = that.data.spimg.concat(imgb)

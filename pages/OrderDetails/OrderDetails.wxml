@@ -24,7 +24,14 @@
 					<image src="{{spimg[idx]}}"></image>
 				</view>
 				<view class="goodsInr">
-					{{item.order_product.goods_sku_name}} {{item.order_product.goods_unit}} {{item.order_product.goods_count}}件
+					<view class="slh2">
+						{{item.order_product.goods_sku_name}} {{item.order_product.goods_unit}} {{item.order_product.goods_count}}件
+					</view>
+					<view class="xiaoji">
+						共{{item.order_product.goods_count}}件商品 
+						<!-- <text class="ml10">小计：</text>
+						<text class="xjjine" wx:if="item.order_product.is_ladder_pricing==0">￥{{item.zj}}</text> -->
+					</view>
 				</view>
 			</view>
 			<!-- <view class="goods2" wx:if="{{item.order_product.is_ladder_pricing==1}}">
@@ -47,20 +54,31 @@
 					</view>
 				</view>
 			</view> -->
-			<view class="xiaoji">
+			<!-- <view class="xiaoji">
 				共{{item.order_product.goods_count}}件商品 
 				<!-- <text class="ml10">小计：</text>
-				<text class="xjjine" wx:if="item.order_product.is_ladder_pricing==0">￥{{item.zj}}</text> -->
-			</view>
+				<text class="xjjine" wx:if="item.order_product.is_ladder_pricing==0">￥{{item.zj}}</text>
+			</view> -->
 		</view>
 	</view>
 	<!-- <view class="zhifu">
 		付款
 	</view> -->
+	<view class="ordermsg ziti">
+		<view class="msgtit">
+			提货点信息
+		</view>
+		<view class="ztmsgbox">
+			<view class="ztmsg">
+				<view>提货地址：</view><view class="ztmsginr">{{goods.info.shop_store_house_address}}{{goods.info.shop_store_house_address}}</view>
+			</view>
+		</view>
+	</view>
 	<view class="ordermsg" wx:show="{{order_status!==''}}">
 		<view class="msgtit">
 			订单信息
 		</view>
+		
 		<view class="msginr">
 			<view class="orderewm">
 				<!-- <image src="/static/images/my/ewm_03.jpg"></image> -->

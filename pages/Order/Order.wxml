@@ -28,8 +28,8 @@
 					{{item.data.goods_sku_name}} {{goodsguige===''?'':goodsguige}} {{goodsnum===''?'':goodsnum}}件
 				</view>
 			</view>
-			<view class="goods2" wx:if="{{item.data.is_ladder_pricing==1}}">
-				<view class="goods2tit">本特惠限购期内您已订购本商品{{item.havenum}}件,本次拟购买商品{{goodsnum===''?'':goodsnum}}件。价格如下：</view>
+			<view class="goods2" wx:if="{{goods_sele[idx].laddermsgs}}">
+				<!-- <view class="goods2tit">本特惠限购期内您已订购本商品{{item.havenum}}件,本次拟购买商品{{goodsnum===''?'':goodsnum}}件。价格如下：</view> -->
 				<view class="table1">
 					<view class="tr1">
 						<view class="th1">数量区间</view>
@@ -70,7 +70,7 @@
 				</view>
 			</view>
 			<view class="goods2" wx:if="{{item.order_cart.is_ladder_pricing==1}}">
-				<view class="goods2tit">本特惠限购期内您已订购本商品{{item.havenum}}件,本次拟购买商品{{item.order_cart.goods_count}}件。价格如下：</view>
+				<!-- <view class="goods2tit">本特惠限购期内您已订购本商品{{item.havenum}}件,本次拟购买商品{{item.order_cart.goods_count}}件。价格如下：</view> -->
 				<view class="table1">
 					<view class="tr1">
 						<view class="th1">数量区间</view>

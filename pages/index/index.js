@@ -31,7 +31,8 @@ Page({
 	},
 	opengoods(e){
 		 let id = e.currentTarget.dataset.id
-		app.opengoods(id)
+		 let sku_info_id = e.currentTarget.dataset.sku_info_id
+		app.opengoods(id,sku_info_id)
 	},
 	//获取首页list（搜索）
 	getshoplist(type){
@@ -93,7 +94,7 @@ Page({
 						let imgb=[]
 						for(let i in rlist){
 							// console.log(rlist[i].goods_img)	
-							let rlb=rlist[i].goods_img.split(",")
+							let rlb=rlist[i].goods_sku.goods_img.split(",")
 							imgb.push(rlb[0])
 						}
 						that.data.spimg = that.data.spimg.concat(imgb)
