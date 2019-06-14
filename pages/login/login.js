@@ -21,21 +21,12 @@ Page({
   onLoad: function (option) {
 			let that =this
 			that.setData({
-				wxcode:wx.getStorageSync('appcode'),
 				tokenstr: wx.getStorageSync('tokenstr')
 			})
+			console.log(wx.getStorageSync('tokenstr'))
 			that.getcompany()
 			
-		wx.login({
-			success: function (res) {
-				// 发送 res.code 到后台换取 openId, sessionKey, unionId
-				let rcode=res.code
-				wx.setStorageSync('appcode', rcode)
-				that.setData({
-					wxcode:rcode
-				});
-			}
-		})
+		
   },
 	oniptblur(e){
 		console.log(e.detail.value)
@@ -65,6 +56,10 @@ Page({
 			dataType:'json',
 			method:'POST',
 			success(res) {
+				wx.showToast({
+					icon:'none',
+					title:'发送成功'
+				})
 				console.log(res.data.code)
 				that.setData({
 					yzm:res.data.code.substr(0,4)
@@ -168,51 +163,85 @@ Page({
 			});
 			return false;
 		}
-		wx.request({
-			url:  app.IPurl1+'login',
-			data:  {
-					key:'server_mima',
-					code:that.data.wxcode,
-					tokenstr:that.data.tokenstr,
-					nickname:uinfo.nickName,
-					headpicurl:uinfo.avatarUrl,
-					tel:formresult.tel,
-					name:formresult.name,
-					shop_channel_id:formresult.company,
-		    },
-			header: {
-				'content-type': 'application/x-www-form-urlencoded' 
-			},
-			dataType:'json',
-			method:'POST',
-			success(res) {
-				console.log(res.data)
-				
-				if(res.data.error==0){
-					wx.reLaunch({
-						url:'/pages/index/index'
-					})
-					wx.setStorageSync('login', 'login')
-					wx.setStorageSync('tokenstr', res.data.tokenstr)
-					wx.setStorageSync('morenaddress', res.data.user_member_shopping_address)
-					/*
-					address:"2321231323"
-					city:"北京市"
-					county:"东城区"
-					create_time:"05/14/2019 15:50:41"
-					default_add:1
-					mobile:"18334774129"
-					name:"苏鑫"
-					province:"北京市"
-					update_time:"05/14/2019 15:50:41"
-					user_member_id:2
-					user_member_shopping_address_id:3
-					*/
-					// wx.setStorageSync('appcode', rcode)
-				}
+		let rcode
+		wx.login({
+			success: function (res) {
+				console.log(res)
+				// 发送 res.code 到后台换取 openId, sessionKey, unionId
+				rcode=res.code
+				wx.setStorageSync('appcode', rcode)
+				that.setData({
+					wxcode:rcode
+				});
+				console.log(rcode)
+				//发送请求
+				wx.request({
+					url:  app.IPurl1+'login',
+					data:  {
+							key:'server_mima',
+							code:rcode,
+							tokenstr:that.data.tokenstr,
+							nickname:uinfo.nickName,
+							headpicurl:uinfo.avatarUrl,
+							tel:formresult.tel,
+							name:formresult.name,
+							shop_channel_id:formresult.company,
+				    },
+					header: {
+						'content-type': 'application/x-www-form-urlencoded' 
+					},
+					dataType:'json',
+					method:'POST',
+					success(res) {
+						console.log(res.data)
+						
+						if(res.data.error==0){
+							wx.showToast({
+								title: '登录成功',
+								duration: 1000,
+								icon:'none'
+							});
+							setTimeout(function() {
+								wx.reLaunch({
+									url:'/pages/index/index'
+								})
+							}, 500);
+							
+							wx.setStorageSync('login', 'login')
+							wx.setStorageSync('tokenstr', res.data.tokenstr)
+							wx.setStorageSync('morenaddress', res.data.user_member_shopping_address)
+							/*
+							address:"2321231323"
+							city:"北京市"
+							county:"东城区"
+							create_time:"05/14/2019 15:50:41"
+							default_add:1
+							mobile:"18334774129"
+							name:"苏鑫"
+							province:"北京市"
+							update_time:"05/14/2019 15:50:41"
+							user_member_id:2
+							user_member_shopping_address_id:3
+							*/
+							// wx.setStorageSync('appcode', rcode)
+						}else{
+							wx.showToast({
+								title: res.data.returnstr,
+								duration: 2000,
+								icon:'none'
+							});
+						}
+					},
+					fail() {
+						wx.showToast({
+							title: '网络异常',
+							duration: 2000,
+							icon:'none'
+						});
+					}
+				})
 			}
 		})
-		
 	},
 	bindGsChange(e){
 		console.log('picker发送选择改变，携带值为', e.detail.value)

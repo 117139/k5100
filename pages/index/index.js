@@ -36,7 +36,7 @@ Page({
 	},
 	//获取首页list（搜索）
 	getshoplist(type){
-		console.log(pageState)
+		// console.log(pageState)
 		const pageState1 = pageState.default(this)
   //   pageState1.loading()    // 切换为loading状态
 		let that = this

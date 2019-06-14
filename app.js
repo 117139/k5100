@@ -1,10 +1,11 @@
 //app.js
 App({
-	IPurl1:'http://water5100.800123456.top/WebService.asmx/',
+	// IPurl1:'https://wx5100api.tdgjs.com/WebService.asmx/',
+	IPurl1:'https://wx5100api.tdgjs.com/WebService.asmx/',
 	jkkey:'server_mima',
   onLaunch: function () {
-		this.checkSession_1()
 		this.getusersetting()
+		this.checkSession_1()
   //   console.log(this.IPurl1)
   },
   globalData: {
@@ -22,6 +23,14 @@ App({
 						success(res) {
 							that.globalData.userInfo = res.userInfo
 							console.log(that.globalData.userInfo)
+							if(that.globalData.userInfo==''){
+								wx.reLaunch({
+								  url: '/pages/shouquan/shouquan',
+								  fail: (err) => {
+								    console.log("失败: " + JSON.stringify(err));
+								  }
+								})
+							}
 						}
 					})
 					var login = wx.getStorageSync('login')
@@ -174,6 +183,7 @@ App({
 				partner_trade_no: order_info_id
 			}
 		}
+		console.log(JSON.stringify(datas))
 		wx.request({
 			url: that.IPurl1 + 'order',
 			data: datas,
@@ -182,7 +192,7 @@ App({
 			},
 			method: "POST",
 			success: function (res) {
-				console.log(res.data);
+				console.log('194'+res.data);
 				if(res.data.error==0){
 					that.doWxPay(res);
 				}else{

@@ -175,9 +175,11 @@ Page({
 					let resultd=res.data
 					console.log(res.data)
 					if(res.data.order_info_id){
+						console.log('178info')
 						app.Pay(res.data.order_info_id,'info')
 					}
 					if(res.data.partner_trade_no){
+						console.log('182no')
 						app.Pay(res.data.partner_trade_no,'no')
 					}
 				}else{
