@@ -7,34 +7,7 @@ Page({
 
   onLoad: function() {
     var that = this;
-		// 查看是否授权
-		wx.getSetting({
-			success: function (res) {
-				if (res.authSetting['scope.userInfo']) {
-					wx.getUserInfo({
-						success: function (res) {
-							//从数据库获取用户信息
-							that.queryUsreInfo();
-							//用户已经授权过
-							var login = wx.getStorageSync('login')
-							console.log('login'+login)
-							if(login!='login'){
-								wx.reLaunch({
-									url:'/pages/login/login'
-								})
-							}else{
-								wx.reLaunch({
-								  url: '/pages/index/index',
-									fail(err) {
-										console.log("失败: " + JSON.stringify(err));
-									}
-								})
-							}
-						}
-					});
-				}
-			}
-		})
+	
 
   },
   bindGetUserInfo: function(e) {

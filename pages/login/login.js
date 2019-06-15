@@ -25,7 +25,24 @@ Page({
 			})
 			console.log(wx.getStorageSync('tokenstr'))
 			that.getcompany()
-			
+//     let uinfo1 = app.globalData.userInfo
+//     // console.log(uinfo1.nickName)
+//     if (uinfo1===null) {
+//       wx.showToast({
+//         title: '您的授权已失效，请重新授权',
+//         duration: 2000,
+//         icon: 'none'
+//       });
+//       setTimeout(function () {
+//         wx.reLaunch({
+//           url: '/pages/shouquan/shouquan',
+//           fail: (err) => {
+//             console.log("失败: " + JSON.stringify(err));
+//           }
+//         })
+//       }, 500)
+//       return
+//     }
 		
   },
 	oniptblur(e){
@@ -126,7 +143,23 @@ Page({
 	formSubmit(e) {
 		console.log(app.globalData.userInfo)
 		let uinfo=app.globalData.userInfo
-		console.log(uinfo.nickName)
+		// console.log(uinfo.nickName)
+    if (uinfo===null){
+      wx.showToast({
+        title: '您的授权已失效，请重新授权',
+        duration: 2000,
+        icon: 'none'
+      });
+      setTimeout(function(){
+        wx.reLaunch({
+          url: '/pages/shouquan/shouquan',
+          fail: (err) => {
+            console.log("失败: " + JSON.stringify(err));
+          }
+        })
+      },500) 
+      return
+    }
 		console.log(uinfo.avatarUrl)
 		let that =this
 	  console.log('form发生了submit事件，携带数据为：', e.detail.value)

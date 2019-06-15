@@ -75,9 +75,9 @@ Page({
 				let rlist=res.data.list
 				if(res.data.error==-2){
 					app.checktoken(res.data.error)
-					setTimeout(function(){
-						that.onLoad()
-					},500)
+					// setTimeout(function(){
+					// 	// that.onLoad()
+					// },100000)
 				}
 				if(res.data.error==0){
 					

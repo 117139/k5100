@@ -23,7 +23,7 @@ App({
 						success(res) {
 							that.globalData.userInfo = res.userInfo
 							console.log(that.globalData.userInfo)
-							if(that.globalData.userInfo==''){
+							if(that.globalData.userInfo==''||that.globalData.userInfo==null){
 								wx.reLaunch({
 								  url: '/pages/shouquan/shouquan',
 								  fail: (err) => {
@@ -93,6 +93,7 @@ App({
 						console.log(res.data)
 						if(res.data.error==0){
 							console.log('登录成功')
+              wx.setStorageSync('login', 'login')
 							wx.setStorageSync('tokenstr', res.data.tokenstr)
 							wx.setStorageSync('morenaddress', res.data.user_member_shopping_address)
 							/*
@@ -113,9 +114,9 @@ App({
 						if(res.data.error==2){
 							wx.setStorageSync('tokenstr', res.data.tokenstr)
 							wx.setStorageSync('appcode', rcode)
-							wx.reLaunch({
-								url:'/pages/login/login'
-							})
+							// wx.reLaunch({
+							// 	url:'/pages/login/login'
+							// })
 						}
 					}
 				})
