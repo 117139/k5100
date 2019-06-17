@@ -21,6 +21,10 @@ Page({
   onLoad: function () {
     this.getshoplist()
   },
+	
+	onShow(){
+	  this.getshoplist()
+	},
 	formSubmit: function(e) {
 		let that =this
 		console.log('form发生了submit事件，携带数据为：', e.detail.value)
