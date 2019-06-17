@@ -23,7 +23,12 @@ Page({
   },
 	
 	onShow(){
-	  this.getshoplist()
+		var that=this
+		app.checktoken(-2)
+		setTimeout(function(){
+			
+			that.getshoplist()
+		},50)
 	},
 	formSubmit: function(e) {
 		let that =this
