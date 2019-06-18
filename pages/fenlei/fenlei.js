@@ -146,16 +146,16 @@ Page({
 							shoplist:rlist,
 							pageindex:that.data.pageindex++
 						})
-						let imgb=[]
-						for(let i in rlist){
-							console.log(rlist[i].goods_img)	
-							let rlb=rlist[i].goods_sku.goods_img.split(",")
-							imgb.push(rlb[0])
-						}
-						that.data.spimg = that.data.spimg.concat(imgb)
-						that.setData({
-							spimg:that.data.spimg
-						})
+						// let imgb=[]
+						// for(let i in rlist){
+						// 	console.log(rlist[i].goods_img)	
+						// 	let rlb=rlist[i].goods_sku.goods_img.split(",")
+						// 	imgb.push(rlb[0])
+						// }
+						// that.data.spimg = that.data.spimg.concat(imgb)
+						// that.setData({
+						// 	spimg:that.data.spimg
+						// })
 					}
 					if(rlist.length<10){
 						console.log('没了')

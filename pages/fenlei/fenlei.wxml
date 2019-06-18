@@ -27,7 +27,7 @@
 				data-id="{{item.goods_sku.goods_sku_id}}"
 				bindtap="opengoods">
 				<view class="spimg">
-					<image src="{{spimg[idx]}}"></image>
+					<image src="{{filter.getgimg(item.goods_sku.goods_img)}}"></image>
 				</view>
 				<view class="spmsg">
 					

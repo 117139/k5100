@@ -1,6 +1,7 @@
 <!--index.wxml-->
 <import src="/utils/pageState/index.wxml" />
 <template is="pageState" data="{{...pageState}}" />
+<wxs src="../../utils/filter.wxs" module="filter" />
 <view class="container">
   <form class="topform" bindsubmit="formSubmit">
     <view class='sousuo'>
@@ -35,7 +36,8 @@
 					data-sku_info_id="{{item.goods_sku_info_list[0].sku_info_id}}"
           wx:key="idx">
 			<view class="pgimg" data-id="{{idx}}">
-				<image src="{{spimg[idx]}}"></image>
+				
+				<image src="{{filter.getgimg(item.goods_sku.goods_img)}}"></image>
 			</view>
 			<view class="spname">{{item.goods_sku.goods_sku_name}}</view>
 			<view class="pri">

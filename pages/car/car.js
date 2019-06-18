@@ -485,16 +485,16 @@ Page({
 					that.setData({
 						goods:resultd
 					})
-					let imgb=[]
-					for(let i = 0;i<resultd.length;i++){
-						// console.log(rlist[i].goods_img)
-						let rlb=resultd[i].order_cart.goods_img.split(",")
-						imgb.push(rlb[0])
-					}
-					that.data.spimg = that.data.spimg.concat(imgb)
-					that.setData({
-						spimg:that.data.spimg
-					})
+					// let imgb=[]
+					// for(let i = 0;i<resultd.length;i++){
+					// 	// console.log(rlist[i].goods_img)
+					// 	let rlb=resultd[i].order_cart.goods_img.split(",")
+					// 	imgb.push(rlb[0])
+					// }
+					// that.data.spimg = that.data.spimg.concat(imgb)
+					// that.setData({
+					// 	spimg:that.data.spimg
+					// })
 					//设置选中的数组
 					let arra=[]
 					for (let i=0;i<resultd.length;i++) {

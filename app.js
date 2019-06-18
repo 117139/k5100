@@ -52,6 +52,7 @@ App({
 				console.log(res)
 	      // session_key 未过期，并且在本生命周期一直有效
 	      console.log("session_key 未过期，并且在本生命周期一直有效")
+				that.dologin()
 	    },
 	    fail() {
 	      // session_key 已经失效，需要重新执行登录流程
@@ -229,7 +230,7 @@ App({
 				})
 				wx.showToast({
 					title: '支付成功',
-					icon: 'success',
+					icon: 'none',
 					duration: 1000
 				});
 			},
@@ -242,7 +243,7 @@ App({
 				})
 				wx.showToast({
 					title: '支付失败',
-					icon: 'success',
+					icon: 'none',
 					duration: 1000
 				});
 				console.log(error)

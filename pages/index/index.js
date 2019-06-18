@@ -19,16 +19,21 @@ Page({
     duration: 1000
   },
   onLoad: function () {
-    this.getshoplist()
+		// var that=this
+  //   app.checktoken(-2)
+  //   setTimeout(function(){
+  //   	
+  //   	that.getshoplist()
+  //   },10)
   },
 	
 	onShow(){
 		var that=this
-		app.checktoken(-2)
+		app.dologin()
 		setTimeout(function(){
 			
 			that.getshoplist()
-		},50)
+		},10)
 	},
 	formSubmit: function(e) {
 		let that =this
@@ -47,7 +52,7 @@ Page({
 	getshoplist(type){
 		// console.log(pageState)
 		const pageState1 = pageState.default(this)
-  //   pageState1.loading()    // 切换为loading状态
+    pageState1.loading()    // 切换为loading状态
 		let that = this
 		// console.log({
 		// 	key:app.jkkey,
@@ -84,9 +89,9 @@ Page({
 				let rlist=res.data.list
 				if(res.data.error==-2){
 					app.checktoken(res.data.error)
-					// setTimeout(function(){
-					// 	// that.onLoad()
-					// },100000)
+					setTimeout(function(){
+						that.onRetry()
+					},0)
 				}
 				if(res.data.error==0){
 					
@@ -100,16 +105,16 @@ Page({
 						that.setData({
 							bannerimg:bannerimg
 						})
-						let imgb=[]
-						for(let i in rlist){
-							// console.log(rlist[i].goods_img)	
-							let rlb=rlist[i].goods_sku.goods_img.split(",")
-							imgb.push(rlb[0])
-						}
-						that.data.spimg = that.data.spimg.concat(imgb)
-						that.setData({
-							spimg:that.data.spimg
-						})
+						// let imgb=[]
+						// for(let i in rlist){
+						// 	// console.log(rlist[i].goods_img)	
+						// 	let rlb=rlist[i].goods_sku.goods_img.split(",")
+						// 	imgb.push(rlb[0])
+						// }
+						// that.data.spimg = that.data.spimg.concat(imgb)
+						// that.setData({
+						// 	spimg:that.data.spimg
+						// })
 					}
 					if(rlist.length<10){
 						console.log('没了')

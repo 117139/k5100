@@ -23,7 +23,8 @@ Page({
 		cnum:1           ,//数量
 		goods_sku_id:0,  //商品id
 		pricelist:0,            //阶梯价
-		havenum:0               //已购数量
+		havenum:0,               //已购数量
+		addshow:false         //小红点
   },
   onLoad: function (option) {
     if(option.id){
@@ -96,6 +97,9 @@ Page({
 					wx.showToast({
 						title:'添加成功'
 					})
+					that.setData({
+						addshow:true
+					})
 				}
 			}
 		})
@@ -118,11 +122,15 @@ Page({
 	},
 	opengwc(e) {
 	  let id = e.currentTarget.dataset.id
+		var that =this
 		// console.log(id)
 		
 	  wx.navigateTo({
 	    url: '/pages/fcar/car?id=' + id
 	  })
+		that.setData({
+			addshow:false
+		})
 	},
 	getGoodsDetails(id,gid){
 		const pageState1 = pageState.default(this)

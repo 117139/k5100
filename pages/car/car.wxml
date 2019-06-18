@@ -17,7 +17,7 @@
 				</view>
 			</view>
 			<view class="goodsImg" data-gid="{{item.order_cart.goods_sku_id}}" bindtap="opengoodsxq">
-				<image src="{{spimg[idx]}}"></image>
+				<image src="{{filter.getgimg(item.order_cart.goods_img)}}"></image>
 			</view>
 			<view class="goodsinr">
 				<view class="goodsname" data-gid="{{item.order_cart.goods_sku_id}}" bindtap="opengoodsxq">

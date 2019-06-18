@@ -15,7 +15,8 @@
 			wx:key="idx1" 
 			data-id="{{item.order_info.order_info_id}}" bindtap="goOrderDetails">
 				<view class="goodsImg">
-					<image src="{{spimg[idx][idx1]}}"></image>
+					<!-- <image src="{{spimg[idx][idx1]}}"></image> -->
+					<image src="{{filter.getgimg(item1.goods_img)}}"></image>
 				</view>
 				<view class="goodsInr">
 					<view class="sptype"> 
@@ -39,10 +40,11 @@
 			</view>
 			<view class="caozuo">
 				<view class="xiaoji">
-					共{{shopNum[idx]}}件商品 <text class="ml10">实付款：</text><text class="xjjine">￥{{filter.moneyFormat(item.order_info.order_price)}}</text>
+					<view>共{{shopNum[idx]}}件商品 </view>
+					<text class="">实付款：</text><text class="xjjine">￥{{filter.moneyFormat(item.order_info.order_price)}}</text>
 				</view>
 				<view class="ordercaozuo" wx:if="{{item.order_info.order_status==0}}">
-					<!-- <view class="confirmBtn cancelBtn" bindtap="cancelBtn">取消订单</view> -->
+					<view class="confirmBtn cancelBtn" data-oid="{{item.order_info.order_info_id}}" bindtap="cancelOrder">取消订单</view>
 					<view class="confirmBtn" data-oid="{{item.order_info.order_info_id}}" bindtap="pay">付款</view>
 				</view>
 				<view class="ordercaozuo" wx:if="{{item.order_info.order_status==2}}">

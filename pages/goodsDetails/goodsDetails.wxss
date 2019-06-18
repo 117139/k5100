@@ -134,16 +134,17 @@
 	position: absolute;
 	top: 10rpx;
 	right: 8rpx;
-	width: 20rpx;
-	height: 20rpx;
+	width: 15rpx;
+	height: 15rpx;
 	border-radius: 50%;
 	border: 1px solid #d24845;
+	background-color: #d24845;
 	font-size: 18rpx;
 	color: #d24845;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: #fff;
+	/* background-color: #fff; */
 }
 .l_name{
 	font-size: 22rpx;

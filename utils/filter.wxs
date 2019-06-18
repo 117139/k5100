@@ -7,12 +7,18 @@ var dateFormat = function(date) {
 var moneyFormat = function(money) {
     return money.toFixed(2);
 }
+var getgimg = function(img) {
+	var img1=img.split(",")
+	// console.log(img1[0])
+    return img1[0]
+}
  
 /*
  * 导出
  */
 module.exports = {
     dateFormat: dateFormat,
-    moneyFormat: moneyFormat
+    moneyFormat: moneyFormat,
+	getgimg:getgimg
 
 }

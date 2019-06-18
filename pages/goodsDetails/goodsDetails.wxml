@@ -113,7 +113,7 @@
 		<view class="opengwc" bindtap="opengwc">
 			<view class="l_icon">
 				<image src="/static/images/index/gwcicon.png"></image>
-				<!-- <view class="goodsnum">1</view> -->
+				<view wx:if="{{addshow}}" class="goodsnum"></view>
 			</view>
 			<view class="l_name">购物车</view>
 		</view>

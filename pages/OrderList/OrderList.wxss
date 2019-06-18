@@ -93,7 +93,7 @@
 }
 
 .xiaoji{
-	text-align: right;
+	/* text-align: right; */
 	font-size: 28rpx;
 	color: #333;
 	padding: 30rpx 0;

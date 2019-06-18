@@ -20,7 +20,16 @@ const error = (that, message) => {
     })
   }
 }
-
+const pastdue = (that, message) => {
+  return (message = '登录过期请重新获取信息') => {
+    that.setData({
+      pageState: {
+        state: 'pastdue',
+        message
+      }
+    })
+  }
+}
 const empty = (that, message) => {
   return (message = '空空如也') => {
     that.setData({
@@ -48,6 +57,7 @@ export default (that) => {
     loading: loading(that),
     error: error(that),
     empty: empty(that),
-    finish: finish(that)
+    finish: finish(that),
+		pastdue:pastdue(that)
   }
 }
