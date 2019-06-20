@@ -1,5 +1,5 @@
 <!--logs.wxml-->
-<view class="container">
+<view wx:if="{{winshow}}" class="container">
   <image src="../../static/images/index/klogobg.jpg"></image>
 	<form class="logintk" bindsubmit="formSubmit">
 		<view class="lgmsg">

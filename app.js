@@ -5,7 +5,7 @@ App({
 	jkkey:'server_mima',
   onLaunch: function () {
 		this.getusersetting()
-		this.checkSession_1()
+		
   //   console.log(this.IPurl1)
   },
   globalData: {
@@ -47,20 +47,21 @@ App({
 	},
 	checkSession_1(){
 		let that =this
-	  wx.checkSession({
-	    success(res) {
-				console.log(res)
-	      // session_key 未过期，并且在本生命周期一直有效
-	      console.log("session_key 未过期，并且在本生命周期一直有效")
+	  // wx.checkSession({
+	  //   success(res) {
+			// 	console.log(res)
+	  //     // session_key 未过期，并且在本生命周期一直有效
+	  //     console.log("session_key 未过期，并且在本生命周期一直有效")
 				that.dologin()
-	    },
-	    fail() {
-	      // session_key 已经失效，需要重新执行登录流程
-	      console.log("session_key 已经失效")
-	      // 重新登录
-	      that.dologin()
-	    }
-	  })
+				
+	  //   },
+	  //   fail() {
+	  //     // session_key 已经失效，需要重新执行登录流程
+	  //     console.log("session_key 已经失效")
+	  //     // 重新登录
+	  //     that.dologin()
+	  //   }
+	  // })
 	},
 	checktoken(res){
 		if(res==-2){
@@ -93,6 +94,12 @@ App({
 					success(res) {
 						console.log(res.data)
 						if(res.data.error==0){
+							wx.reLaunch({
+							  url: '/pages/index/index',
+							  fail: (err) => {
+							    console.log("失败: " + JSON.stringify(err));
+							  }
+							})
 							console.log('登录成功')
               wx.setStorageSync('login', 'login')
 							wx.setStorageSync('tokenstr', res.data.tokenstr)

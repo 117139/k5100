@@ -19,21 +19,16 @@ Page({
     duration: 1000
   },
   onLoad: function () {
-		// var that=this
-  //   app.checktoken(-2)
-  //   setTimeout(function(){
-  //   	
-  //   	that.getshoplist()
-  //   },10)
+		var that=this
+		// app.dologin()
+		// setTimeout(function(){
+		// 	
+			that.getshoplist()
+		// },10)
   },
 	
 	onShow(){
-		var that=this
-		app.dologin()
-		setTimeout(function(){
-			
-			that.getshoplist()
-		},10)
+		
 	},
 	formSubmit: function(e) {
 		let that =this
@@ -88,10 +83,10 @@ Page({
 				// console.log(res.data.list)
 				let rlist=res.data.list
 				if(res.data.error==-2){
-					app.checktoken(res.data.error)
-					setTimeout(function(){
-						that.onRetry()
-					},0)
+					// app.checktoken(res.data.error)
+					// setTimeout(function(){
+					// 	that.onRetry()
+					// },0)
 				}
 				if(res.data.error==0){
 					

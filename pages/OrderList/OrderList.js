@@ -67,46 +67,58 @@ Page({
 		let that =this
 		console.log('picker发送选择改变，携带值为', e.detail.value)
 		let oid=e.currentTarget.dataset.oid
-		wx.request({
-			url:  app.IPurl1+'order',
-			data:{
-				op:'del',
-				order_info_id:oid,
-				key:app.jkkey,
-				tokenstr:wx.getStorageSync('tokenstr')
-			},
-			header: {
-				'content-type': 'application/x-www-form-urlencoded' 
-			},
-			dataType:'json',
-			method:'POST',
-			success(res) {
-				if(res.data.error==-2){
-					app.checktoken(res.data.error)
-					that.onLoad()
+		wx.showModal({
+			title: '提示',
+			content: '是否取消该订单?',
+			success (res) {
+				if (res.confirm) {
+					console.log('用户点击确定')
+					wx.request({
+						url:  app.IPurl1+'order',
+						data:{
+							op:'del',
+							order_info_id:oid,
+							key:app.jkkey,
+							tokenstr:wx.getStorageSync('tokenstr')
+						},
+						header: {
+							'content-type': 'application/x-www-form-urlencoded' 
+						},
+						dataType:'json',
+						method:'POST',
+						success(res) {
+							if(res.data.error==-2){
+								app.checktoken(res.data.error)
+								that.onLoad()
+							}
+							if(res.data.error==0){
+								wx.showToast({
+									title: '删除成功',
+									duration: 1000
+								});
+								that.getOrderList(that.data.otype)
+							}else{
+								wx.showToast({
+									title: res.data.returnstr,
+									duration: 1000
+								});
+							}
+							
+						
+						},
+						fail() {
+							 wx.showToast({
+							 	title: '操作失败',
+							 	duration: 1000
+							 });
+						}
+					})
+				} else if (res.cancel) {
+					console.log('用户点击取消')
 				}
-				if(res.data.error==0){
-					wx.showToast({
-						title: '删除成功',
-						duration: 1000
-					});
-					that.getOrderList(that.data.otype)
-				}else{
-					wx.showToast({
-						title: res.data.returnstr,
-						duration: 1000
-					});
-				}
-				
-			
-			},
-			fail() {
-				 wx.showToast({
-				 	title: '操作失败',
-				 	duration: 1000
-				 });
 			}
 		})
+		
 	},
 	/*计算价格*/
 	countpri(){

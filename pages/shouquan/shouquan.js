@@ -45,18 +45,18 @@ Page({
       })*/
 			var login = wx.getStorageSync('login')
 			console.log('74login'+login)
-			if(login!='login'){
+			// if(login!='login'){
 				wx.reLaunch({
 					url:'/pages/login/login'
 				})
-			}else{
-				wx.reLaunch({
-				  url: '/pages/index/index',
-					fail(err) {
-						console.log("失败: " + JSON.stringify(err));
-					}
-				})
-			}
+			// }else{
+			// 	wx.reLaunch({
+			// 	  url: '/pages/index/index',
+			// 		fail(err) {
+			// 			console.log("失败: " + JSON.stringify(err));
+			// 		}
+			// 	})
+			// }
     } else {
       //用户按了拒绝按钮
       wx.showModal({

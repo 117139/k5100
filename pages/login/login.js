@@ -16,10 +16,18 @@ Page({
 		setstate:0,
 		time:60,
 		wxcode:'',
-		tokenstr:''
+		tokenstr:'',
+		winshow:true
   },
   onLoad: function (option) {
 			let that =this
+			var login = wx.getStorageSync('login')
+			if(login=='login'){
+				that.setData({
+					winshow:false
+				})
+			}
+			app.checkSession_1()
 			that.setData({
 				tokenstr: wx.getStorageSync('tokenstr')
 			})
@@ -208,6 +216,11 @@ Page({
 				});
 				console.log(rcode)
 				//发送请求
+				wx.showLoading({
+					title: '正在登录中',
+					mask:true
+				})
+				// return
 				wx.request({
 					url:  app.IPurl1+'login',
 					data:  {
@@ -227,7 +240,7 @@ Page({
 					method:'POST',
 					success(res) {
 						console.log(res.data)
-						
+						wx.hideLoading()
 						if(res.data.error==0){
 							wx.showToast({
 								title: '登录成功',
@@ -266,6 +279,7 @@ Page({
 						}
 					},
 					fail() {
+						wx.hideLoading()
 						wx.showToast({
 							title: '网络异常',
 							duration: 2000,
