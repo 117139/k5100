@@ -70,7 +70,7 @@
 		</view>
 		<view class="ztmsgbox">
 			<view class="ztmsg">
-				<view>提货地址：</view><view class="ztmsginr">{{goods.info.shop_store_house_address}}{{goods.info.shop_store_house_address}}</view>
+				<view>提货地址：</view><view class="ztmsginr">{{goods.info.shop_store_house_address}}</view>
 			</view>
 		</view>
 	</view>
