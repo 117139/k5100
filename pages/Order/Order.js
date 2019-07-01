@@ -512,8 +512,7 @@ Page({
 					Totalpri +=100*bpri*item1/100
 					laddermsg.push(ladderOne)
 				}
-			}
-			if(ygnum<lownum){   //后续阶梯（最小值大于已购）
+      } else if(ygnum<lownum){   //后续阶梯（最小值大于已购）
 				numlen=upnum-lownum+1   //当前阶梯的限购数量
 				if(jtzsy<numlen){
 					numlen=jtzsy

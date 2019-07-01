@@ -148,16 +148,11 @@ Page({
 		let Totalpri=0
 		let laddermsg=[]
 		for(var i = 0; i < jt.length; i++){
-			// console.log(nownum)
-			// console.log(that.data)
-			// console.log(that.data.goods[idx].pricelist)
 			let lownum=jt[i].lower_num
 			let upnum=jt[i].upper_num
 			// console.log(jtpri[i])
 			
 			let bpri=jtpri[i].price
-			// console.log(lownum)
-			// console.log(upnum)
 			
 			let jtzsy=jt[i].limit_num-jt[i].saled_num
 			if(lownum-1<=ygnum&&ygnum<upnum){ //根据已购获取开始阶梯

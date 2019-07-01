@@ -80,7 +80,7 @@
 		</view>
 		
 		<view class="msginr">
-			<view class="orderewm">
+			<view hidden='{{order_status===0}}' class="orderewm">
 				<!-- <image src="/static/images/my/ewm_03.jpg"></image> -->
 				<canvas class='canvas' style="width:{{qrcodeWidth}}px; height:{{qrcodeWidth}}px;" canvas-id='canvas' bindlongtap=''></canvas>
 			</view>
