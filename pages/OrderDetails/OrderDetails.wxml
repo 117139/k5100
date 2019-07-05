@@ -1,5 +1,6 @@
 <!--logs.wxml-->
 <import src="/utils/pageState/index.wxml" />
+<wxs src="../../utils/filter.wxs" module="filter" />
 <template is="pageState" data="{{...pageState}}" />
 <view class="container">
   <!-- <view class="address">
@@ -86,8 +87,8 @@
 			</view>
 			<view class="ordermsg_r">
 				<view class="omsgp">订单编号：{{goods.info.delivery_code}}</view>
-				<view class="omsgp">创建时间：2019-05-11  11:42:06</view>
-				<view class="omsgp" wx:if="{{order_status!==0}}">付款时间：2019-05-11  11:42:09</view>
+				<view class="omsgp">创建时间：{{filter.getTime(goods.info.order_time)}}</view>
+				<view class="omsgp" wx:if="{{order_status!==0}}">付款时间：{{filter.getTime(goods.info.payment_time)}}</view>
 				<view class="ordercaozuo">
 					<text>￥{{sum}}</text>
 					<view wx:if="{{order_status===0}}" class="confirmBtn" bindtap="pay">付款</view>
