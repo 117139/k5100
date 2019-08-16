@@ -4,6 +4,11 @@ var dateFormat = function(date) {
     var dates = date.split('/');
     return dates[0] + "年" + dates[1] + "月" + dates[2] + "日";
 }
+var imgIP=function(img){
+	var newimg ='http://192.168.129.119/'+img
+	console.log(newimg)
+	return newimg
+}
 var moneyFormat = function(money) {
     return money.toFixed(2);
 }
@@ -27,6 +32,7 @@ module.exports = {
     dateFormat: dateFormat,
     moneyFormat: moneyFormat,
 	getgimg:getgimg,
-  getTime:getTime
+  getTime:getTime,
+	imgIP:imgIP
 
 }

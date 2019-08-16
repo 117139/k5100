@@ -18,7 +18,7 @@
     line-height: 1.8;
 }
 image{
-
+	max-width: 100%;
 }
 view{
     word-break:break-all; 

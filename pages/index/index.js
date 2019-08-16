@@ -91,6 +91,7 @@ Page({
 				if(res.data.error==0){
 					
 					if(rlist.length>0){
+						// that.data.sp=that.data.sp.concat(rlist)
 						that.setData({
 							sp:rlist,
 							pageindex:that.data.pageindex++

@@ -154,9 +154,8 @@ Page({
 		// console.log(uinfo.nickName)
     if (uinfo===null){
       wx.showToast({
-        title: '您的授权已失效，请重新授权',
-        duration: 2000,
-        icon: 'none'
+        icon: 'none',
+        title: '您的授权已失效，请重新授权'
       });
       setTimeout(function(){
         wx.reLaunch({
